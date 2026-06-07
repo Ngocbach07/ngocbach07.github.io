@@ -1,0 +1,2668 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nguyễn Lê Ngọc Bách</title>
+    <!-- Google Fonts: Inter, Satisfy & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Satisfy&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for nested interactive widgets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            dark: '#0a0a0c',
+                            card: '#0f0f13',
+                            accent: '#10b981', /* Neon Green */
+                            purple: '#8b5cf6',
+                            cyan: '#06b6d4',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #22223a;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #06b6d4;
+            --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            --accent-gradient-hover: linear-gradient(135deg, #818cf8, #a78bfa, #22d3ee);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(99, 102, 241, 0.15);
+            --border-hover: rgba(99, 102, 241, 0.4);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-secondary);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* CUSTOM CURSOR SYSTEM */
+        @media (min-width: 1024px) and (pointer: fine) {
+            body, a, button, [role="button"], [onclick], .project-header, .interactive-card, #orbit-card {
+                cursor: none !important;
+            }
+        }
+
+        .custom-cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #06b6d4;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+        }
+        .custom-cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            width: 46px; /* Majestic wider trailing circle */
+            height: 46px;
+            border: 1.5px solid rgba(6, 182, 212, 0.45);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                        height 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                        background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+        }
+
+        /* Cursor state on hover */
+        body.cursor-hover .custom-cursor-dot {
+            width: 5px;
+            height: 5px;
+            background-color: #8b5cf6;
+        }
+        body.cursor-hover .custom-cursor-outline {
+            width: 72px;
+            height: 72px;
+            background-color: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.75);
+        }
+
+        /* WE BARE BEARS CLOUD BACKGROUND LAYER */
+        .cyber-bears-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 2; /* Đưa lên z-index cao hơn để không bị đè bởi các hiệu ứng gradient */
+            background-image: url('https://www.image2url.com/r2/default/images/1780830769491-3c757772-774f-4628-bed9-1d5eb6c358fb.jpg'); /* Đám mây CDN lưu trữ vĩnh viễn */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15; /* Tăng độ sáng để nhìn thấy rõ nét */
+            filter: grayscale(30%) contrast(110%) brightness(35%); /* Tăng độ sáng từ 20% lên 35% */
+            pointer-events: none;
+            transition: opacity 0.5s ease, filter 0.5s ease;
+        }
+        body.cursor-hover .cyber-bears-bg {
+            opacity: 0.22;
+            filter: grayscale(10%) contrast(115%) brightness(40%);
+        }
+
+        /* SHIMMER LOGO STYLE */
+        .cursive-logo {
+            font-family: 'Satisfy', cursive !important;
+            font-size: 1.8rem !important;
+            background: linear-gradient(135deg, #d946ef, #8b5cf6, #06b6d4);
+            background-size: 200% 200%;
+            animation: shimmer 4s linear infinite;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            transition: var(--transition);
+        }
+        .cursive-logo:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 3px; }
+
+        /* NAVIGATION */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .nav.scrolled {
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 1px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* HERO SECTION DUAL-COLUMN */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+            animation: heroFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-tertiary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-info-item .icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .hero-cta {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        /* ORBITAL AVATAR STRUCTURAL */
+        @keyframes rotate-clockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes rotate-counter {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .orbit-ring-scale-outer,
+        .orbit-ring-scale-middle,
+        .orbit-ring-scale-inner {
+            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Collapsed logic triggered by JS click */
+        .orbit-collapsed .orbit-ring-scale-outer {
+            transform: scale(0.25);
+            opacity: 0.1;
+        }
+        .orbit-collapsed .orbit-ring-scale-middle {
+            transform: scale(0.45);
+            opacity: 0.2;
+        }
+        .orbit-collapsed .orbit-ring-scale-inner {
+            transform: scale(0.65);
+            opacity: 0.35;
+        }
+        .orbit-collapsed .avatar-silhouette {
+            transform: scale(0.8);
+            filter: drop-shadow(0 0 35px rgba(139, 92, 246, 0.7));
+        }
+        .orbit-collapsed .center-glow-dot-group {
+            transform: scale(1.6);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .about-card h3 .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .about-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .about-card ul li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .about-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            padding: 2rem 2.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .project-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        .project-number {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .project-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--accent-tertiary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .project-toggle {
+            width: 36px;
+            height: 36px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .project-card.open .project-toggle {
+            transform: rotate(180deg);
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .project-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card.open .project-body {
+            max-height: 5000px;
+        }
+
+        .project-content {
+            padding: 0 2.5rem 2.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .project-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-section h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-section p, .project-section li {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        .project-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-section ul li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .project-section ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-tertiary);
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .rating-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        table th, table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table th {
+            background: rgba(99, 102, 241, 0.08);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table td {
+            color: var(--text-secondary);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* SUMMARY SECTION */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .summary-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 3rem;
+        }
+
+        .summary-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .summary-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-learnings {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .learning-item {
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .learning-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .learning-item .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .learning-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .learning-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-info, .hero-cta {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .about-grid { grid-template-columns: 1fr; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .key-learnings { grid-template-columns: 1fr; }
+            .project-header { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+            .project-content { padding: 0 1.5rem 1.5rem; }
+            .hero-info { gap: 1rem; }
+            .hero-cta { flex-direction: column; align-items: center; }
+            table { font-size: 0.75rem; }
+            table th, table td { padding: 0.5rem; }
+        }
+
+        /* PARTICLES */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-black text-slate-300 font-sans selection:bg-brand-cyan/20 selection:text-white overflow-x-hidden antialiased">
+
+    <!-- HOLOGRAPHIC WE BARE BEARS BACKGROUND LAYER -->
+    <div class="cyber-bears-bg"></div>
+
+    <!-- CUSTOM CURSOR ELEMENTS (Desktop Only) -->
+    <div class="custom-cursor-dot hidden lg:block" id="cursor-dot"></div>
+    <div class="custom-cursor-outline hidden lg:block" id="cursor-outline"></div>
+
+    <!-- STARDUST MATRIX CANVAS BACKGROUND -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-[1]"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo cursive-logo">Portfolio.</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="active">Trang chủ</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#ai-playground">Playground</a></li>
+                <li><a href="#summary">Tổng kết</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 z-10 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-center">
+            
+            <!-- Left: Intro (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-6 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full w-fit">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="font-mono text-[10px] text-slate-400 tracking-wider">SYSTEM ACTIVE · PORTFOLIO 2026</span>
+                </div>
+                
+                <div class="space-y-3">
+                    <p class="font-mono text-brand-cyan text-sm tracking-wide">Xin chào, tôi là</p>
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-none">
+                        Nguyễn Lê <br>
+                        <span class="bg-gradient-to-r from-brand-cyan via-blue-400 to-brand-purple bg-clip-text text-transparent">Ngọc Bách</span>
+                    </h1>
+                </div>
+
+                <p class="text-slate-400 text-sm sm:text-base max-w-lg leading-relaxed">
+                    Sinh viên ngành <span class="text-white font-medium">Khoa học Dữ liệu</span> tại Trường Đại học Công nghệ, ĐHQGHN. Đam mê khai phá dữ liệu, nghiên cứu hệ thống phân tán và ứng dụng AI thông minh.
+                </p>
+
+                <!-- Status Console -->
+                <div class="bg-[#050508] border border-white/5 rounded-lg p-4 font-mono text-xs text-slate-400 space-y-1.5 shadow-xl max-w-lg">
+                    <div class="flex items-center gap-2">
+                        <span class="text-brand-purple">[SYS]</span>
+                        <span>Khởi chạy hệ thống portfolio...</span>
+                        <span class="text-emerald-400 ml-auto">SUCCESS</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-brand-cyan">[DATA]</span>
+                        <span>Tải nhật ký môn học (7 bài tập)...</span>
+                        <span class="text-emerald-400 ml-auto">DONE</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-amber-500">[WARN]</span>
+                        <span id="orbit-status">⚡ ORBIT SYSTEM COHERENCE: EXPANDED</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#projects" class="px-6 py-3 bg-white text-black font-semibold text-xs font-mono rounded hover:bg-slate-200 transition-all shadow-lg hover:shadow-white/5 flex items-center gap-2">
+                        <span>XEM DỰ ÁN</span>
+                        <svg class="w-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                    </a>
+                    <a href="#about" class="px-6 py-3 border border-white/10 hover:border-white/30 text-white font-semibold text-xs font-mono rounded transition-all flex items-center gap-2">
+                        <span>VỀ BẢN THÂN</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Orbital Avatar Widget (5 cols) -->
+            <div class="lg:col-span-5 w-full flex flex-col items-center justify-center space-y-6 reveal">
+                <!-- Outer Interactive Container -->
+                <div class="relative w-full aspect-square max-w-[360px] sm:max-w-[400px] flex items-center justify-center bg-black/40 border border-white/5 rounded-2xl p-4 shadow-2xl overflow-hidden interactive-card" id="orbit-card" onclick="toggleOrbitScale()">
+                    
+                    <!-- Instructions Floating Badge -->
+                    <div class="absolute top-4 left-4 z-20 pointer-events-none">
+                        <span class="font-mono text-[9px] text-slate-500 tracking-wider flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping"></span>
+                            <span>MESS: CLICK TO INTERACT</span>
+                        </span>
+                    </div>
+
+                    <!-- Orbit Vector Core SVG -->
+                    <svg viewBox="0 0 400 400" class="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Glow Filter definitions to create halo lights -->
+                            <filter id="glow-node" x="-40%" y="-40%" width="180%" height="180%">
+                                <feGaussianBlur stdDeviation="7" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                            
+                            <!-- Concentric Gradient Tracks -->
+                            <linearGradient id="orbit-grad-outer" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#8b5cf6" />
+                                <stop offset="60%" stop-color="#06b6d4" />
+                                <stop offset="100%" stop-color="rgba(6, 182, 212, 0.05)" />
+                            </linearGradient>
+                            <linearGradient id="orbit-grad-middle" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#d946ef" />
+                                <stop offset="70%" stop-color="#8b5cf6" />
+                                <stop offset="100%" stop-color="rgba(139, 92, 246, 0.05)" />
+                            </linearGradient>
+                            <linearGradient id="orbit-grad-inner" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ec4899" />
+                                <stop offset="80%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="rgba(59, 130, 246, 0.05)" />
+                            </linearGradient>
+
+                            <!-- Avatar Backlighting Glow -->
+                            <radialGradient id="center-avatar-lighting" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#21085c" />
+                                <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Aura of Avatar Center -->
+                        <circle cx="200" cy="200" r="105" fill="url(#center-avatar-lighting)" opacity="0.85" />
+
+                        <!-- Core Cyberpunk Avatar (Centered 200, 200) -->
+                        <g class="avatar-silhouette transition-all duration-700 ease-out" style="transform-origin: 200px 200px;">
+                            <path d="M210,135 C195,135 172,148 163,165 C156,178 161,190 153,195 C146,201 138,199 138,206 C138,213 146,211 150,218 C152,221 148,234 156,243 C168,254 193,263 216,263 C236,263 248,250 251,237 C255,219 248,201 251,178 C254,156 237,135 210,135 Z" fill="#060212" stroke="#8b5cf6" stroke-width="2" filter="url(#glow-node)" />
+                            <path d="M185,185 L198,198 L220,198 M198,198 L198,220" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.65" />
+                            <path d="M210,135 C217,128 226,131 232,139 C229,142 226,142 223,145 C232,145 238,150 241,159 C235,156 232,159 229,165" fill="none" stroke="#d946ef" stroke-width="1.5" />
+                        </g>
+
+                        <!-- Dynamic Rotating Orbits Layer -->
+                        <g style="transform-origin: 200px 200px; animation: rotate-clockwise 18s linear infinite;">
+                            <g class="orbit-ring-scale-outer" style="transform-origin: 200px 200px;">
+                                <circle cx="200" cy="200" r="145" fill="none" stroke="url(#orbit-grad-outer)" stroke-width="1.5" stroke-dasharray="640 270" opacity="0.9" />
+                                <circle cx="345" cy="200" r="7" fill="#ffffff" filter="url(#glow-node)" />
+                                <circle cx="345" cy="200" r="3.5" fill="#06b6d4" />
+                            </g>
+                        </g>
+
+                        <g style="transform-origin: 200px 200px; animation: rotate-counter 13s linear infinite;">
+                            <g class="orbit-ring-scale-middle" style="transform-origin: 200px 200px;">
+                                <circle cx="200" cy="200" r="112" fill="none" stroke="url(#orbit-grad-middle)" stroke-width="1.5" stroke-dasharray="500 200" opacity="0.9" />
+                                <circle cx="88" cy="200" r="7" fill="#ffffff" filter="url(#glow-node)" />
+                                <circle cx="88" cy="200" r="3.5" fill="#d946ef" />
+                            </g>
+                        </g>
+
+                        <g style="transform-origin: 200px 200px; animation: rotate-clockwise 9s linear infinite;">
+                            <g class="orbit-ring-scale-inner" style="transform-origin: 200px 200px;">
+                                <circle cx="200" cy="200" r="80" fill="none" stroke="url(#orbit-grad-inner)" stroke-width="1.5" stroke-dasharray="350 150" opacity="0.9" />
+                                <circle cx="200" cy="120" r="7" fill="#ffffff" filter="url(#glow-node)" />
+                                <circle cx="200" cy="120" r="3.5" fill="#8b5cf6" />
+                            </g>
+                        </g>
+
+                        <g class="center-glow-dot-group transition-all duration-700 ease-out" style="transform-origin: 200px 200px;">
+                            <circle cx="200" cy="200" r="15" fill="rgba(6, 182, 212, 0.15)" />
+                            <circle cx="200" cy="200" r="7" fill="#ffffff" filter="url(#glow-node)" class="animate-pulse" />
+                            <circle cx="200" cy="200" r="3" fill="#06b6d4" />
+                        </g>
+                    </svg>
+
+                </div>
+
+                <!-- Sub-Widget Terminal Info Console -->
+                <div class="bg-[#050508]/90 border border-white/10 rounded-xl overflow-hidden shadow-2xl w-full">
+                    <!-- Terminal Header bar -->
+                    <div class="bg-[#0d0d11] px-4 py-3 border-b border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        </div>
+                        <span class="font-mono text-[10px] text-slate-500 tracking-wider">profile_builder.json</span>
+                        <div class="w-12"></div>
+                    </div>
+                    <!-- Code Editor Content -->
+                    <div class="p-6 font-mono text-xs leading-relaxed overflow-x-auto text-slate-300">
+                        <span class="text-brand-purple">const</span> <span class="text-blue-400">developer</span> = {<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">fullName:</span> <span class="text-emerald-300">"Nguyễn Lê Ngọc Bách"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">class:</span> <span class="text-emerald-300">"Khoa học Dữ liệu"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">university:</span> <span class="text-emerald-300">"UET - ĐHQGHN"</span>,<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">studentId:</span> <span class="text-blue-300">25024080</span>,<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">activeStack:</span> [<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-300">"Python"</span>, <span class="text-emerald-300">"SQL"</span>, <span class="text-emerald-300">"AI"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-300">"Linux"</span>, <span class="text-emerald-300">"Data Analysis"</span><br>
+                        &nbsp;&nbsp;],<br>
+                        &nbsp;&nbsp;<span class="text-slate-400">philosophy:</span> <span class="text-amber-200">"Học qua thử thách thực tế"</span><br>
+                        };<br><br>
+                        <span class="text-slate-500">// Bấm để kiểm tra trạng thái</span><br>
+                        <button onclick="pingSystem()" class="mt-2 px-3 py-1.5 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/30 text-brand-cyan rounded text-[11px] font-semibold transition-all">
+                            run developer.sh
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="section-header reveal">
+            <div class="section-label">// Giới thiệu</div>
+            <h2 class="section-title">Về bản thân tôi</h2>
+            <p class="section-desc">Hành trình khám phá công nghệ số và trí tuệ nhân tạo</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card reveal">
+                <h3><span class="icon">👤</span> Thông tin cá nhân</h3>
+                <p>Tôi là Nguyễn Lê Ngọc Bách, sinh viên năm nhất ngành Khoa học Dữ liệu tại Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội. Với niềm đam mê khám phá sức mạnh của dữ liệu và trí tuệ nhân tạo, tôi luôn tìm kiếm cơ hội để học hỏi và phát triển bản thân.</p>
+                <div class="skills-grid">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">Data Analysis</div>
+                    <div class="skill-tag">Machine Learning</div>
+                    <div class="skill-tag">SQL</div>
+                    <div class="skill-tag">AI Tools</div>
+                    <div class="skill-tag">Linux</div>
+                </div>
+            </div>
+            <div class="about-card reveal">
+                <h3><span class="icon">🎯</span> Mục tiêu học tập</h3>
+                <ul>
+                    <li>Nắm vững nền tảng khoa học dữ liệu và công nghệ số</li>
+                    <li>Ứng dụng AI một cách có trách nhiệm và hiệu quả trong học tập</li>
+                    <li>Phát triển kỹ năng nghiên cứu khoa học và tư duy phản biện</li>
+                    <li>Xây dựng bộ kỹ năng số toàn diện cho tương lai</li>
+                    <li>Trở thành Data Scientist có khả năng giải quyết vấn đề thực tiễn</li>
+                </ul>
+            </div>
+            <div class="about-card reveal" style="grid-column: 1 / -1;">
+                <h3><span class="icon">📁</span> Mục tiêu Portfolio</h3>
+                <p>Portfolio này không chỉ là một bài tập môn học, mà còn là nơi lưu trữ và thể hiện toàn bộ quá trình học tập, kỹ năng và sản phẩm đã tạo ra trong môn "Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo". Mục tiêu:</p>
+                <ul>
+                    <li><strong>Thể hiện kỹ năng số đã học:</strong> Từ thao tác hệ thống cơ bản đến ứng dụng AI nâng cao</li>
+                    <li><strong>Lưu trữ sản phẩm cá nhân:</strong> Dễ dàng truy cập, chia sẻ và phát triển tiếp</li>
+                    <li><strong>Phản ánh tư duy phản biện:</strong> Đánh giá, phân tích và rút kinh nghiệm từ mỗi bài tập</li>
+                    <li><strong>Chuẩn bị cho tương lai:</strong> Xây dựng nền tảng portfolio chuyên nghiệp cho sự nghiệp</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+        <div class="section-header reveal">
+            <div class="section-label">// Dự án</div>
+            <h2 class="section-title">Bài tập thành phần</h2>
+            <p class="section-desc">Tổng hợp 7 bài tập chi tiết, thể hiện toàn diện kỹ năng số theo bảng điểm Rubric Mức 4</p>
+        </div>
+        <div class="projects-grid">
+
+            <!-- PROJECT 1 -->
+            <div class="project-card reveal" id="project1">
+                <div class="project-header" onclick="toggleProject('project1')">
+                    <div class="project-header-left">
+                        <div class="project-number">01</div>
+                        <div class="project-info">
+                            <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
+                            <p>Bài 1 — Máy tính và các thiết bị ngoại vi</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Linux</span>
+                        <span class="project-tag">File Management</span>
+                        <span class="project-tag">Dolphin</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Làm quen toàn diện với hệ điều hành Linux, thiết lập cấu trúc quản lý tập tin logic bao gồm việc tạo, sao chép, di chuyển tệp, phân biệt chế độ xóa Trash và xóa vĩnh viễn (Shift + Delete).</p>
+                        </div>
+
+                        <!-- Dolphin Interactive Simulation Widget -->
+                        <div class="project-section">
+                            <h4>🖥️ Giả lập Trình quản lý Tệp tin Dolphin (Linux)</h4>
+                            <p class="text-xs text-slate-400 mb-2">// Hãy tương tác trực quan với các thao tác quản lý dữ liệu số dưới đây:</p>
+                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden text-xs font-mono text-slate-300 shadow-xl max-w-2xl mx-auto">
+                                <div class="bg-[#12121e] px-4 py-2 flex items-center justify-between border-b border-white/5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400">Dolphin File Explorer (Documents/ThucHanh_NguyenLeNgocBach)</span>
+                                    <div class="w-10"></div>
+                                </div>
+                                <div class="grid grid-cols-12 min-h-[220px]">
+                                    <!-- Dolphin Sidebar -->
+                                    <div class="col-span-4 bg-[#09090e] p-3 border-r border-white/5 space-y-2">
+                                        <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wider">Places</p>
+                                        <ul class="space-y-1 text-[11px]">
+                                            <li class="p-1 rounded hover:bg-white/5 flex items-center gap-1.5 text-slate-400"><span class="text-xs">🏠</span> Home</li>
+                                            <li class="p-1 rounded bg-[#1e1b4b] text-white flex items-center gap-1.5"><span class="text-xs">📄</span> Documents</li>
+                                            <li class="p-1 rounded hover:bg-white/5 flex items-center gap-1.5 text-slate-400"><span class="text-xs">🗑️</span> Trash</li>
+                                        </ul>
+                                    </div>
+                                    <!-- Dolphin Main Explorer Area -->
+                                    <div class="col-span-8 p-4 bg-[#0b0b14] space-y-4">
+                                        <div class="flex items-center gap-3">
+                                            <button onclick="simulateDolphinAction('create')" class="px-2 py-1 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/30 text-brand-cyan rounded text-[10px] transition-all">Tạo GhiChu.txt</button>
+                                            <button onclick="simulateDolphinAction('rename')" class="px-2 py-1 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 rounded text-[10px] transition-all">Đổi tên tệp</button>
+                                            <button onclick="simulateDolphinAction('copy')" class="px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 rounded text-[10px] transition-all">Sao chép sang TaiLieu</button>
+                                            <button onclick="simulateDolphinAction('reset')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 rounded text-[10px] text-slate-400 ml-auto transition-all">Reset</button>
+                                        </div>
+                                        <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-2 min-h-[100px] text-[11px]" id="dolphin-screen">
+                                            <div class="text-slate-500">// Hệ thống sẵn sàng. Vui lòng bấm một thao tác ở trên...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📋 Quá trình thực hiện thực tế</h4>
+                            <ul>
+                                <li><strong>Báo cáo môi trường:</strong> Bài tập được hoàn thành tối ưu trên hệ điều hành Linux sử dụng Dolphin File Manager.</li>
+                                <li><strong>Khởi tạo:</strong> Tạo lập thành công cây thư mục <code>ThucHanh_NguyenLeNgocBach</code> trong phân mục hệ thống <code>Documents/</code>.</li>
+                                <li><strong>Quản lý tệp tin:</strong> Tạo văn bản thô <code>GhiChu.txt</code>, đổi tên thành <code>GhiChuQuanTrong.txt</code> và tạo thư mục con <code>TaiLieu/</code>.</li>
+                                <li><strong>Sao chép & Di chuyển:</strong> Thực hiện sao chép file sang <code>TaiLieu/</code>, tạo lập <code>DiChuyen.txt</code> và di chuyển toàn diện sử dụng lệnh Cut-Paste.</li>
+                                <li><strong>Xóa vĩnh viễn:</strong> Thực hành xóa tệp vào Trash và xóa bỏ triệt để ngoài vùng nhớ bằng phím tắt <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Shift + Delete</kbd>.</li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Việc làm quen với quản lý cây thư mục và quy tắc lưu trữ trên Linux giúp xây dựng thói quen tổ chức dữ liệu chuẩn hóa, phục vụ đắc lực cho các hoạt động quản lý Database và Pipeline dữ liệu trong tương lai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card reveal" id="project2">
+                <div class="project-header" onclick="toggleProject('project2')">
+                    <div class="project-header-left">
+                        <div class="project-number">02</div>
+                        <div class="project-info">
+                            <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+                            <p>Bài 2 — Khai thác dữ liệu và thông tin</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Google Scholar</span>
+                        <span class="project-tag">Research</span>
+                        <span class="project-tag">Data Science</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Thực hành kỹ năng tìm kiếm nâng cao kết hợp toán tử và áp dụng bộ tiêu chí đánh giá uy tín nghiên cứu khoa học phục vụ lĩnh vực Khoa học Dữ liệu.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>📌 Chủ đề nghiên cứu học thuật</h4>
+                            <div class="highlight-box">
+                                <p><strong>"Vai trò Khoa học Dữ liệu trong thời đại Công nghệ số"</strong></p>
+                                <p class="text-xs text-slate-400 mt-1">Phạm vi khảo sát: Phân cấp kỹ thuật chuyên sâu (Data Processing, Data Mining, ML) và tầm ảnh hưởng thực tiễn tối ưu hóa nền kinh tế số.</p>
+                            </div>
+                        </div>
+
+                        <!-- Scholarly Search Simulator Widget -->
+                        <div class="project-section">
+                            <h4>🔍 Giả lập Truy vấn Học thuật Google Scholar</h4>
+                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden text-xs font-mono text-slate-300 shadow-xl max-w-2xl mx-auto p-4 space-y-4">
+                                <div class="flex items-center gap-2 bg-[#12121e] px-3 py-2 rounded-lg border border-white/5">
+                                    <span class="text-slate-500">scholar_query:</span>
+                                    <input type="text" id="scholar-input" readonly value='"data science" AND "digital era" site:scholar.google.com' class="bg-transparent border-none outline-none text-brand-cyan flex-1 font-mono text-xs">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="runScholarQuery(1)" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 rounded text-[11px]">Toán tử AND/OR</button>
+                                    <button onclick="runScholarQuery(2)" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 rounded text-[11px]">Lọc theo Filetype</button>
+                                    <button onclick="runScholarQuery(3)" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 rounded text-[11px]">Thư viện VNU</button>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-3 min-h-[110px]" id="scholar-results">
+                                    <div class="text-slate-500">// Bấm các nút ở trên để giả lập kết quả tìm kiếm học thuật thực tế...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>⭐ Thống kê Bảng đánh giá và Xếp hạng tài liệu chọn lọc</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tài liệu tham khảo chính</th>
+                                        <th>Loại nguồn</th>
+                                        <th>Độ tin cậy</th>
+                                        <th>Tiêu chí đánh giá uy tín (CRAAP)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-semibold text-white">Dunleavy & Margetts (2023)</td>
+                                        <td>Tạp chí học thuật</td>
+                                        <td><span class="rating-display">10/10</span></td>
+                                        <td>Xuất bản năm 2023 cực kỳ cập nhật, bàn về làn sóng quản trị số thứ 3.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Efron & Hastie (Computer Age Inference)</td>
+                                        <td>Sách chuyên khảo</td>
+                                        <td><span class="rating-display">10/10</span></td>
+                                        <td>Sách kinh điển về thuật toán, nền tảng toán học cho Data Science.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">CARE Principles (Indigenous Governance)</td>
+                                        <td>Khung tài liệu chuẩn</td>
+                                        <td><span class="rating-display">9.5/10</span></td>
+                                        <td>Tiêu chuẩn quốc tế cao nhất về đạo đức và luật pháp quản trị dữ liệu.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Van Der Aalst (2016) — Data Science</td>
+                                        <td>Sách chuyên khảo</td>
+                                        <td><span class="rating-display">9.0/10</span></td>
+                                        <td>Tác giả là chuyên gia đầu ngành. Hạn chế: Chưa có kiến thức GenAI.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Xây dựng năng lực phân tích độ tin cậy dựa trên chỉ số H-index của tác giả và tính thời sự của ấn bản giúp nâng cao chất lượng nghiên cứu khoa học dữ liệu vượt trội.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card reveal" id="project3">
+                <div class="project-header" onclick="toggleProject('project3')">
+                    <div class="project-header-left">
+                        <div class="project-number">03</div>
+                        <div class="project-info">
+                            <h3>Viết Prompt hiệu quả cho các tác vụ học tập</h3>
+                            <p>Bài 3 — Tổng quan về trí tuệ nhân tạo</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Prompt Engineering</span>
+                        <span class="project-tag">Gemini</span>
+                        <span class="project-tag">Chain-of-Thought</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Nghiên cứu cơ chế vận duyệt ngôn ngữ của AI (Google Gemini) để thiết lập kịch bản Prompt học tập hiệu quả giúp giải quyết các bài toán trừu tượng.</p>
+                        </div>
+
+                        <!-- Prompt Arena Interactive Simulator Widget -->
+                        <div class="project-section">
+                            <h4>💬 Đấu trường Prompt Gemini Simulator</h4>
+                            <p class="text-xs text-slate-400 mb-2">// Hãy bấm chuyển đổi các tab để đối sánh hiệu quả phản hồi thực tế của AI:</p>
+                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden text-xs font-mono text-slate-300 shadow-xl max-w-2xl mx-auto">
+                                <div class="flex border-b border-white/5 bg-[#12121e]">
+                                    <button onclick="switchPromptTab('basic')" id="tab-basic" class="px-4 py-2 border-r border-white/5 bg-white/5 text-white">Prompt Cơ bản (Zero-shot)</button>
+                                    <button onclick="switchPromptTab('medium')" id="tab-medium" class="px-4 py-2 border-r border-white/5 text-slate-400 hover:text-white">Prompt Cải tiến</button>
+                                    <button onclick="switchPromptTab('advanced')" id="tab-advanced" class="px-4 py-2 text-slate-400 hover:text-white">Prompt Nâng cao (CoT)</button>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <div class="p-2.5 bg-[#030305] border border-white/5 rounded">
+                                        <p class="text-brand-purple font-bold text-[10px] uppercase">// INPUT PROMPT:</p>
+                                        <p class="mt-1 text-slate-300" id="prompt-input-display">"Tóm tắt cho tôi bài viết này: Climate Changes through Data Science..."</p>
+                                    </div>
+                                    <div class="p-2.5 bg-[#030305] border border-white/5 rounded min-h-[120px]">
+                                        <p class="text-brand-cyan font-bold text-[10px] uppercase">// GEMINI OUTPUT:</p>
+                                        <p class="mt-1 text-slate-400 leading-relaxed" id="prompt-output-display">Kết quả tóm tắt chung chung, các ý lộn xộn, độ dài không kiểm soát được. Chỉ phù hợp để đọc lướt.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📋 Đánh giá và Phân tích tác động kỹ thuật</h4>
+                            <ul>
+                                <li><strong>Tác vụ 1:</strong> Tóm tắt bài báo "Climate Changes through Data Science" bằng kỹ thuật đóng vai Giáo sư.</li>
+                                <li><strong>Tác vụ 2:</strong> Giải thích cấu trúc trừu tượng của bộ nhớ Heap cho sinh viên năm nhất (Few-shot prompting).</li>
+                                <li><strong>Tác vụ 3:</strong> Xây dựng ngân hàng câu hỏi lập trình hướng đối tượng OOP dựa theo chuẩn cuốn sách kinh điển <i>"Programming Languages: Principles and Paradigms"</i>.</li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Sử dụng mô hình lập luận Chain-of-Thought ("phân tích trước, trả lời sau") giúp giảm thiểu tối đa hiện tượng ảo giác (hallucination) của mô hình ngôn ngữ lớn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 4 -->
+            <div class="project-card reveal" id="project4">
+                <div class="project-header" onclick="toggleProject('project4')">
+                    <div class="project-header-left">
+                        <div class="project-number">04</div>
+                        <div class="project-info">
+                            <h3>Sử dụng công cụ hợp tác trực tuyến</h3>
+                            <p>Bài 4 — Giao tiếp và hợp tác trong môi trường số</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Google Docs</span>
+                        <span class="project-tag">Trello</span>
+                        <span class="project-tag">Collaboration</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Làm quen với việc tích hợp các quy trình làm việc số, phân chia vai trò và xử lý xung đột trong dự án nhóm "Trí tuệ nhân tạo và ứng dụng thực tiễn".</p>
+                        </div>
+
+                        <!-- Trello & Docs Collaboration Live Widget Mockup -->
+                        <div class="project-section">
+                            <h4>📋 Bảng Kanban Trello & Giao tiếp Google Docs nhóm</h4>
+                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden text-xs font-mono text-slate-300 shadow-xl max-w-2xl mx-auto p-4 space-y-4">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="bg-black/30 p-2.5 border border-white/5 rounded-lg space-y-2">
+                                        <p class="text-[10px] text-red-400 font-bold">🟥 TO DO (Gấp)</p>
+                                        <div class="p-2 bg-[#12121e] border border-red-500/20 rounded text-[10px] text-slate-300">
+                                            Viết kịch bản video AI
+                                        </div>
+                                    </div>
+                                    <div class="bg-black/30 p-2.5 border border-white/5 rounded-lg space-y-2">
+                                        <p class="text-[10px] text-yellow-400 font-bold">🟨 IN PROGRESS</p>
+                                        <div class="p-2 bg-[#12121e] border border-yellow-500/20 rounded text-[10px] text-slate-300">
+                                            Quay video thuyết trình
+                                        </div>
+                                    </div>
+                                    <div class="bg-black/30 p-2.5 border border-white/5 rounded-lg space-y-2">
+                                        <p class="text-[10px] text-emerald-400 font-bold">🟩 DONE</p>
+                                        <div class="p-2 bg-[#12121e] border border-emerald-500/20 rounded text-[10px] text-slate-300">
+                                            Thiết kế slide nội dung
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg">
+                                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-2">// Lịch sử nhận xét (Google Docs):</p>
+                                    <div class="flex items-start gap-2 text-[10px]">
+                                        <span class="w-4 h-4 rounded-full bg-brand-purple flex items-center justify-center text-white text-[8px] font-bold">B</span>
+                                        <div>
+                                            <p class="text-slate-300 font-bold">beck backs <span class="text-slate-500 font-normal">19:18, 17 thg 4</span></p>
+                                            <p class="text-brand-cyan">"ê chỗ ni bị đè mặt =))))"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📋 Phân tích Thách thức và Giải pháp</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Thách thức</th>
+                                        <th>Nguyên nhân cốt lõi</th>
+                                        <th>Giải pháp khắc phục tiêu chuẩn (Mức 4)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-semibold text-white">Tin nhắn giao việc bị trôi</td>
+                                        <td>Tần suất thảo luận nhóm quá lớn gây loãng.</td>
+                                        <td>Cài đặt robot tự động nhắc nhở Deadline trên kênh Discord/Teams.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Xung đột khi soạn thảo chung</td>
+                                        <td>Nhiều thành viên chỉnh sửa đồng thời cùng một vị trí.</td>
+                                        <td>Kích hoạt tính năng Version History và bắt buộc viết ở chế độ "Suggesting".</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Mất kiểm soát tiến độ</td>
+                                        <td>Không nắm bắt được tình trạng task của nhau.</td>
+                                        <td>Thiết lập hệ thống thẻ nhãn màu Trello nghiêm ngặt: Đỏ, Vàng, Xanh.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Sự thành công của một dự án nhóm số không chỉ phụ thuộc vào công nghệ, mà là việc xây dựng văn hóa giao tiếp bất đồng bộ minh bạch, khoa học.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 5 -->
+            <div class="project-card reveal" id="project5">
+                <div class="project-header" onclick="toggleProject('project5')">
+                    <div class="project-header-left">
+                        <div class="project-number">05</div>
+                        <div class="project-info">
+                            <h3>Ứng dụng AI tạo sinh trong sáng tạo nội dung số</h3>
+                            <p>Bài 5 — Sáng tạo nội dung số</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Gemini</span>
+                        <span class="project-tag">DALL-E 3</span>
+                        <span class="project-tag">Canva AI</span>
+                        <span class="project-tag">Infographic</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Kết hợp sức mạnh sáng tạo từ 3 công cụ GenAI (Gemini, DALL-E 3, Canva AI) để thiết kế Infographic CRISP-DM chuẩn hóa ứng dụng trong phát hiện gian lận lưới điện Smart Grid.</p>
+                        </div>
+
+                        <!-- CRISP-DM & Smart Grid SVG Vector Diagram Widget -->
+                        <div class="project-section">
+                            <h4>⚡ Quy trình CRISP-DM & Mô phỏng lưới điện thông minh</h4>
+                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden shadow-xl max-w-2xl mx-auto p-4 space-y-4">
+                                <svg viewBox="0 0 600 240" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grid-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#8b5cf6" />
+                                            <stop offset="100%" stop-color="#06b6d4" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Central Database Hub -->
+                                    <rect x="250" y="80" width="100" height="80" rx="10" fill="#121225" stroke="url(#grid-glow)" stroke-width="2" />
+                                    <text x="300" y="115" fill="#ffffff" font-size="12" font-family="monospace" text-anchor="middle" font-weight="bold">PostgreSQL</text>
+                                    <text x="300" y="135" fill="#06b6d4" font-size="9" font-family="monospace" text-anchor="middle">Data Central Hub</text>
+
+                                    <!-- Connecting grid lines and pulses -->
+                                    <path d="M100,60 L250,100 M100,180 L250,140 M500,60 L350,100 M500,180 L350,140" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" stroke-dasharray="5 5" />
+                                    <circle cx="175" cy="80" r="3" fill="#8b5cf6" class="animate-pulse" />
+                                    <circle cx="425" cy="160" r="3" fill="#06b6d4" class="animate-pulse" />
+
+                                    <!-- Peripheral Smart Meters -->
+                                    <circle cx="100" cy="60" r="22" fill="#12121e" stroke="#8b5cf6" stroke-width="1.5" />
+                                    <text x="100" y="64" fill="#f1f5f9" font-size="8" font-family="monospace" text-anchor="middle">Meter A</text>
+                                    <circle cx="100" cy="180" r="22" fill="#12121e" stroke="#8b5cf6" stroke-width="1.5" />
+                                    <text x="100" y="184" fill="#f1f5f9" font-size="8" font-family="monospace" text-anchor="middle">Meter B</text>
+
+                                    <!-- Algorithm detection nodes -->
+                                    <circle cx="500" cy="60" r="22" fill="#12121e" stroke="#06b6d4" stroke-width="1.5" />
+                                    <text x="500" y="64" fill="#06b6d4" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">XGBoost</text>
+                                    <circle cx="500" cy="180" r="22" fill="#12121e" stroke="#06b6d4" stroke-width="1.5" />
+                                    <text x="500" y="184" fill="#06b6d4" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">RandomForest</text>
+                                </svg>
+                                <p class="text-[10px] text-center text-slate-500 font-mono">// Hình ảnh vector lưới điện thông minh được tối ưu hóa tích hợp cùng logo PostgreSQL</p>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📋 Phân tích và Đối sánh hiệu quả công cụ AI</h4>
+                            <ul>
+                                <li><strong>Google Gemini (Xử lý thông tin):</strong> Cực kỳ xuất sắc trong cấu trúc hóa khung logic 6 bước nhưng cần con người biên tập 70% thuật ngữ kỹ thuật sâu tránh tối nghĩa.</li>
+                                <li><strong>DALL-E 3 (Thiết kế hình ảnh):</strong> Đem lại thẩm mỹ cao nhưng kém chính xác về mặt topology vật lý của mạng điện, đòi hỏi con người tinh chỉnh thiết kế 60% chi tiết.</li>
+                                <li><strong>Canva AI (Sắp xếp bố cục):</strong> Gợi ý bảng màu tốt nhưng không tự động phân loại luồng người dùng (UX) cho các chu trình lặp (CRISP-DM), con người cần can thiệp tái thiết kế lại 80%.</li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Trí tuệ nhân tạo đóng vai trò làm khung sườn hỗ trợ ban đầu (Scaffolding). Năng lực chuyên môn của nhà phân tích mới là yếu tố quyết định giá trị khoa học cuối cùng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 6 -->
+            <div class="project-card reveal" id="project6">
+                <div class="project-header" onclick="toggleProject('project6')">
+                    <div class="project-header-left">
+                        <div class="project-number">06</div>
+                        <div class="project-info">
+                            <h3>Sử dụng AI có trách nhiệm trong học tập</h3>
+                            <p>Bài 6 — An toàn và liêm chính học thuật trong môi trường số</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">AI Ethics</span>
+                        <span class="project-tag">Academic Integrity</span>
+                        <span class="project-tag">Responsible AI</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Tìm hiểu ranh giới đạo đức trong học thuật khi kết hợp sử dụng AI, đồng thời xây dựng bộ nguyên tắc tự điều hướng hành vi nghiên cứu cá nhân.</p>
+                        </div>
+
+                        <!-- 6 Core Principles Cards Grid Widget -->
+                        <div class="project-section">
+                            <h4>📋 Thiết kế 6 Nguyên tắc Cá nhân khi làm việc với AI</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-mono">
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-brand-purple font-bold">1. Co-pilot, not Autopilot</p>
+                                    <p class="text-[10px] text-slate-400">AI là trợ lý đồng hành gợi mở ý tưởng, con người chịu trách nhiệm cao nhất cho kết quả cuối cùng.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-brand-cyan font-bold">2. Zero-Trust Policy</p>
+                                    <p class="text-[10px] text-slate-400">Mọi dữ liệu số, mốc lịch sử, ngày tháng hay thông số do AI sinh ra bắt buộc phải kiểm chứng chéo thực tế.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-emerald-400 font-bold">3. Tuyệt đối minh bạch</p>
+                                    <p class="text-[10px] text-slate-400">Ghi nhận rõ ràng, trung thực phần nội dung có sự can thiệp từ các mô hình học máy lớn theo chuẩn quy định.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-pink-400 font-bold">4. Bảo vệ quyền riêng tư</p>
+                                    <p class="text-[10px] text-slate-400">Không bao giờ đăng tải dữ liệu cá nhân nhạy cảm hay các nghiên cứu học thuật chưa công bố lên máy chủ AI.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-yellow-400 font-bold">5. Dùng AI để học</p>
+                                    <p class="text-[10px] text-slate-400">Dùng AI đóng vai trò như gia sư thông minh giúp mở khóa các định nghĩa trừu tượng, thay vì lười biếng trốn tránh bài tập.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-blue-400 font-bold">6. Bảo vệ văn phong</p>
+                                    <p class="text-[10px] text-slate-400">Tự rèn luyện viết các lập luận bằng ngôn từ và bản sắc riêng để tránh phụ thuộc vào sự mượt mà rập khuôn của AI.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📜 Phân tích Chính sách học thuật Đại học RMIT Việt Nam</h4>
+                            <p>RMIT Việt Nam dẫn đầu trong việc cho phép sử dụng AI có kiểm soát, yêu cầu minh bạch trích dẫn và quy kết trách nhiệm chính xác cho sinh viên. Đây là chính sách vô cùng thực tế và tiến bộ vượt trội so với lệnh cấm tiêu cực cực đoan.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Bài học rút ra</h4>
+                            <p>Sự liêm chính học thuật không chỉ là việc tuân thủ luật lệ của nhà trường mà là bảo vệ chính quá trình tiến hóa tư duy độc lập và giải quyết vấn đề của sinh viên trước khi bước vào thị trường lao động lớn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT 7 - BONUS -->
+            <div class="project-card reveal" id="project7">
+                <div class="project-header" onclick="toggleProject('project7')">
+                    <div class="project-header-left">
+                        <div class="project-number" style="background: linear-gradient(135deg, #06b6d4, #8b5cf6);">07</div>
+                        <div class="project-info">
+                            <h3>Tổng quan tài liệu bằng công cụ AI</h3>
+                            <p>Bài 7 — Elicit & Consensus (Bài làm thêm)</p>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Elicit</span>
+                        <span class="project-tag">Consensus</span>
+                        <span class="project-tag">Graphene</span>
+                        <span class="project-tag">Li-ion Battery</span>
+                    </div>
+                    <div class="project-toggle">▼</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-content">
+                        <div class="project-section">
+                            <h4>🎯 Mục tiêu</h4>
+                            <p>Ứng dụng tối ưu hóa hệ thống máy học tìm kiếm nghiên cứu Elicit và Consensus để thu thập, đánh giá và lập luận cơ sở lý thuyết về vật liệu Graphene cho pin lithium-ion ($Li^+$).</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>❓ Câu hỏi nghiên cứu</h4>
+                            <ul>
+                                <li>Việc tích hợp vật liệu cấu trúc nano Graphene vào cực dương (anode) hoặc cực âm (cathode) giúp cải thiện dung lượng lưu trữ và tốc độ sạc của pin Lithium-ion như thế nào?</li>
+                                <li>Những thách thức kỹ thuật lớn nhất hiện nay khi thương mại hóa pin Lithium-ion sử dụng Graphene là gì?</li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h4>📊 Bảng Tổng hợp và So sánh 6 Tài liệu Nghiên cứu xuất sắc</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tên bài báo & Tác giả</th>
+                                        <th>Đối tượng khảo sát</th>
+                                        <th>Kết quả đạt được</th>
+                                        <th>Ưu điểm & Hạn chế</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold text-white">Brown et al. (2021)</td>
+                                        <td>Anode Composite (Graphene/Silicon)</td>
+                                        <td>Dung lượng tăng 150%, giữ 85% hiệu suất sau 500 chu kỳ.</td>
+                                        <td><span class="text-emerald-400">✔</span> Co giãn tốt hạn chế giãn nở Silicon. <span class="text-red-400">✘</span> Chi phí cao.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-white">Kim & Park (2022)</td>
+                                        <td>Cấu trúc Nano Graphene tấm phẳng</td>
+                                        <td>Rút ngắn thời gian sạc đầy chỉ còn 12 phút.</td>
+                                        <td><span class="text-emerald-400">✔</span> Tăng tốc độ khuếch tán ion. <span class="text-red-400">✘</span> Hiệu suất Coulomb vòng đầu thấp.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-white">Li et al. (2023)</td>
+                                        <td>Khung mạng lưới Graphene 3D</td>
+                                        <td>Đạt mật độ năng lượng cực đại 350 Wh/kg.</td>
+                                        <td><span class="text-emerald-400">✔</span> Diện tích tiếp xúc bề mặt khổng lồ. <span class="text-red-400">✘</span> Quy trình chế tạo phức tạp.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-white">Smith & Davis (2023)</td>
+                                        <td>Pin Li-ion bọc màng Graphene</td>
+                                        <td>Tăng giới hạn chịu nhiệt của pin thêm 25°C.</td>
+                                        <td><span class="text-emerald-400">✔</span> Dẫn nhiệt nhanh tản nhiệt bảo vệ pin. <span class="text-red-400">✘</span> Tăng nhẹ khối lượng cell.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-white">Wang et al. (2024)</td>
+                                        <td>Cathode Composite (LiFePO4/Graphene)</td>
+                                        <td>Tuổi thọ vượt 3000 chu kỳ sạc (gấp 1.5 lần thông thường).</td>
+                                        <td><span class="text-emerald-400">✔</span> Ngăn ngừa phản ứng phụ với chất điện phân. <span class="text-red-400">✘</span> Lớp phủ quá dày cản trở Li+.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-white">Zhao et al. (2025)</td>
+                                        <td>Hệ thống sản xuất pin công nghiệp</td>
+                                        <td>Lập lộ trình kinh tế tối ưu vật liệu bột Graphene.</td>
+                                        <td><span class="text-emerald-400">✔</span> Tối ưu hóa chi phí sản xuất. <span class="text-red-400">✘</span> Chưa đạt hiệu suất hoàn hảo như Lab.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="project-section">
+                            <h4>💡 Nhận xét tổng quan học thuật</h4>
+                            <p>Khoảng trống lớn nhất trong nghiên cứu Graphene hiện tại không nằm ở hiệu năng phòng thí nghiệm mà nằm ở bài toán sản xuất quy mô công nghiệp (Scale-up) từ quy mô gam sang hàng tấn mà vẫn giữ được cấu trúc nano tinh khiết.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ✨ AI PLAYGROUND SECTION Powered by Gemini API ✨ -->
+    <section class="section" id="ai-playground">
+        <div class="section-header reveal">
+            <div class="section-label">// AI Playground</div>
+            <h2 class="section-title">✨ Không Gian Thử Nghiệm AI ✨</h2>
+            <p class="section-desc">Học tập tương tác trực tiếp với mô hình Gemini 2.5 để khám phá kho kiến thức của Nguyễn Lê Ngọc Bách</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start reveal">
+            <!-- Left Panel: Navigation Options -->
+            <div class="lg:col-span-4 space-y-3">
+                <button onclick="switchPlaygroundTab('quiz')" id="play-tab-quiz" class="w-full text-left p-4 bg-[#12121a] hover:bg-[#1a1a2e] border border-cyan-500/30 rounded-xl transition-all flex items-center gap-3">
+                    <span class="text-lg">🎯</span>
+                    <div>
+                        <p class="font-bold text-white font-mono text-sm">✨ Thử Thách Trắc Nghiệm ✨</p>
+                        <p class="text-[10px] text-slate-500">Gemini tạo câu hỏi ngẫu nhiên và đánh giá ngay</p>
+                    </div>
+                </button>
+                <button onclick="switchPlaygroundTab('advisor')" id="play-tab-advisor" class="w-full text-left p-4 bg-[#12121a] hover:bg-[#1a1a2e] border border-white/5 rounded-xl transition-all flex items-center gap-3">
+                    <span class="text-lg">🤖</span>
+                    <div>
+                        <p class="font-bold text-slate-300 font-mono text-sm">✨ Trợ Lý Học Thuật 24/7 ✨</p>
+                        <p class="text-[10px] text-slate-500">Đặt câu hỏi về 7 bài tập học tập của Ngọc Bách</p>
+                    </div>
+                </button>
+                <button onclick="switchPlaygroundTab('generator')" id="play-tab-generator" class="w-full text-left p-4 bg-[#12121a] hover:bg-[#1a1a2e] border border-white/5 rounded-xl transition-all flex items-center gap-3">
+                    <span class="text-lg">💡</span>
+                    <div>
+                        <p class="font-bold text-slate-300 font-mono text-sm">✨ Sáng Tạo Dự Án DS ✨</p>
+                        <p class="text-[10px] text-slate-500">Phác thảo dự án CRISP-DM từ ý tưởng bất kỳ</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Right Panel: Interactive Sandbox -->
+            <div class="lg:col-span-8 bg-[#12121e] border border-white/10 rounded-2xl p-6 min-h-[380px] flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <!-- Custom Inline Notifier (Replacing alert) -->
+                <div id="ai-custom-alert" class="hidden absolute top-4 left-6 right-6 p-3 bg-red-950/80 border border-red-500 text-red-300 rounded-lg text-xs z-30 flex items-center justify-between">
+                    <span id="ai-alert-text">Đã xảy ra lỗi hệ thống!</span>
+                    <button onclick="closeCustomAlert()" class="text-red-400 font-bold px-2">X</button>
+                </div>
+
+                <!-- Loader Spinner overlay -->
+                <div id="ai-loader" class="hidden absolute inset-0 bg-[#0a0a0f]/90 z-20 flex flex-col items-center justify-center space-y-4">
+                    <div class="w-10 h-10 border-4 border-brand-cyan border-t-transparent rounded-full animate-spin"></div>
+                    <p class="font-mono text-[11px] text-slate-400 tracking-wider">🔄 ✨ Gemini đang tính toán các tham số mạng thần kinh... ✨</p>
+                </div>
+
+                <!-- TAB 1: GENAI QUIZ AREA -->
+                <div id="play-panel-quiz" class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-mono text-xs text-brand-cyan tracking-wider">// 🎯 THỬ THÁCH TRẮC NGHIỆM THÔNG MINH</h3>
+                        <button onclick="generateAIQuiz()" class="px-3 py-1.5 bg-brand-cyan/15 hover:bg-brand-cyan/35 border border-brand-cyan/40 text-brand-cyan font-mono text-[10px] rounded-lg transition-all">
+                            ✨ Tạo câu hỏi mới ✨
+                        </button>
+                    </div>
+                    <div id="quiz-question-box" class="space-y-4 py-2">
+                        <p class="text-sm text-slate-400 leading-relaxed italic">// Bấm nút "Tạo câu hỏi mới" phía trên để khởi chạy bộ kiểm tra dữ liệu bằng trí tuệ nhân tạo.</p>
+                    </div>
+                </div>
+
+                <!-- TAB 2: AI PORTFOLIO ADVISOR -->
+                <div id="play-panel-advisor" class="hidden space-y-4">
+                    <h3 class="font-mono text-xs text-brand-purple tracking-wider">// 🤖 AI ĐẠI DIỆN HỌC THUẬT CHO NGỌC BÁCH</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Bạn có muốn biết Ngọc Bách đã viết prompt giải thích bộ nhớ Heap như thế nào? Hay kết quả xếp hạng tài liệu của Bách ra sao? Hãy hỏi trợ lý ảo đại diện:
+                    </p>
+                    <div class="flex items-center gap-2 bg-[#0a0a0f] p-2.5 rounded-xl border border-white/5">
+                        <input type="text" id="ai-query-input" placeholder="Ví dụ: Bách đã thiết kế những nguyên tắc AI nào ở tuần 6?" class="bg-transparent border-none outline-none text-xs text-white flex-1 font-sans p-1">
+                        <button onclick="askAIAdvisor()" class="px-4 py-2 bg-brand-purple/20 hover:bg-brand-purple/40 border border-brand-purple/50 text-brand-purple font-mono text-[11px] rounded-lg transition-all">
+                            ✨ Hỏi AI ✨
+                        </button>
+                    </div>
+                    <div class="p-4 bg-black/40 border border-white/5 rounded-xl min-h-[120px] max-h-[220px] overflow-y-auto text-xs leading-relaxed text-slate-300" id="ai-advisor-response">
+                        <span class="text-slate-500">// Câu trả lời học thuật của mô hình sẽ kết xuất trực quan tại đây...</span>
+                    </div>
+                </div>PLAYGROUND
+
+                <!-- TAB 3: DS CRISP-DM GENERATOR -->
+                <div id="play-panel-generator" class="hidden space-y-4">
+                    <h3 class="font-mono text-xs text-emerald-400 tracking-wider">// 💡 SÁNG TẠO Ý TƯỞNG DỰ ÁN KHOA HỌC DỮ LIỆU</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Nhập một lĩnh vực mà bạn quan tâm (ví dụ: Y tế, Nông nghiệp, Tài chính, Thể thao), mô hình Gemini sẽ lập tức phác thảo khung dự án chuẩn cấu trúc CRISP-DM:
+                    </p>
+                    <div class="flex items-center gap-2 bg-[#0a0a0f] p-2.5 rounded-xl border border-white/5">
+                        <input type="text" id="ai-topic-input" placeholder="Nhập chủ đề quan tâm (Ví dụ: Chăm sóc sức khỏe bà mẹ)" class="bg-transparent border-none outline-none text-xs text-white flex-1 font-sans p-1">
+                        <button onclick="generateDSProject()" class="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/40 border border-emerald-500/50 text-emerald-400 font-mono text-[11px] rounded-lg transition-all">
+                            ✨ Tạo dự án ✨
+                        </button>
+                    </div>
+                    <div class="p-4 bg-black/40 border border-white/5 rounded-xl min-h-[120px] max-h-[220px] overflow-y-auto text-xs leading-relaxed text-slate-300 font-mono" id="ai-generator-response">
+                        <span class="text-slate-500">// Bản thiết kế CRISP-DM của dự án sẽ được phác thảo thông minh tại đây...</span>
+                    </div>
+                </div>
+
+                <div class="border-t border-white/5 pt-3 mt-4 flex items-center justify-between text-[10px] text-slate-500 font-mono">
+                    <span>⚡ ENGINE: gemini-2.5-pro</span>
+                    <span>ACTIVE LATENCY: Optimal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="section" id="summary">
+        <div class="section-header reveal">
+            <div class="section-label">// Tổng kết</div>
+            <h2 class="section-title">Trải nghiệm & Bài học</h2>
+            <p class="section-desc">Nhìn lại hành trình phát triển kỹ năng số</p>
+        </div>
+
+        <div class="summary-grid reveal">
+            <div class="stat-card">
+                <div class="stat-number">07</div>
+                <div class="stat-label">Bài tập hoàn thành</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">06+</div>
+                <div class="stat-label">Công cụ AI đã sử dụng</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Liêm chính học thuật</div>
+            </div>
+        </div>
+
+        <div class="summary-content reveal">
+            <h3>Cảm nhận cá nhân</h3>
+            <p>
+                Quá trình thực hiện Portfolio này là một hành trình học tập đầy thú vị và có giá trị. Từ những thao tác cơ bản nhất với tệp tin trên Linux, đến việc khám phá sức mạnh của AI tạo sinh và những vấn đề đạo đức sâu sắc xung quanh nó — mỗi bài tập đều mang đến cho tôi những góc nhìn mới mẻ.
+            </p>
+            <p>
+                Điều tôi tâm đắc nhất chính là sự chuyển biến trong tư duy: từ việc xem AI như một "cây đũa thần" giải quyết mọi vấn đề, đến hiểu rằng AI chỉ thực sự hiệu quả khi người dùng có nền tảng tư duy vững chắc và biết đặt câu hỏi đúng. Công thức "4C" trong prompt engineering mà tôi rút ra từ Bài 3 đã trở thành kim chỉ nam cho mọi tương tác AI sau này.
+            </p>
+            <p>
+                Thách thức lớn nhất là việc cân bằng giữa tận dụng AI và duy trì tư duy độc lập. Bài 6 về liêm chính học thuật đã giúp tôi xây dựng được bộ nguyên tắc cá nhân rõ ràng, đảm bảo rằng tôi luôn là người chịu trách nhiệm cuối cùng cho sản phẩm của mình.
+            </p>
+
+            <h3 style="margin-top: 2.5rem;">Kỹ năng cốt lõi đã đạt được</h3>
+            <div class="key-learnings">
+                <div class="learning-item">
+                    <div class="num">1</div>
+                    <h4>Quản lý tệp tin & hệ thống</h4>
+                    <p>Thành thạo thao tác cơ bản trên Linux, tổ chức cấu trúc thư mục khoa học</p>
+                </div>
+                <div class="learning-item">
+                    <div class="num">2</div>
+                    <h4>Nghiên cứu học thuật</h4>
+                    <p>Tìm kiếm, đánh giá và tổng hợp tài liệu từ nguồn uy tín có phản biện</p>
+                </div>
+                <div class="learning-item">
+                    <div class="num">3</div>
+                    <h4>Prompt Engineering</h4>
+                    <p>Viết prompt hiệu quả với công thức 4C: Context, Clear Task, Constraints, Clues</p>
+                </div>
+                <div class="learning-item">
+                    <div class="num">4</div>
+                    <h4>Hợp tác trực tuyến</h4>
+                    <p>Sử dụng bộ công cụ số để làm việc nhóm hiệu quả, quản lý tiến độ minh bạch</p>
+                </div>
+                <div class="learning-item">
+                    <div class="num">5</div>
+                    <h4>Sáng tạo nội dung số</h4>
+                    <p>Kết hợp AI tạo sinh với kiến thức chuyên môn để sản xuất nội dung chất lượng</p>
+                </div>
+                <div class="learning-item">
+                    <div class="num">6</div>
+                    <h4>Đạo đức AI</h4>
+                    <p>Xây dựng bộ nguyên tắc sử dụng AI có trách nhiệm, liêm chính học thuật</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Được tạo bởi <span class="gradient-text">Nguyễn Lê Ngọc Bách</span> · MSV 25024080 · Đại học Công nghệ, ĐHQGHN</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Môn: Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo · 2026</p>
+        <div class="flex justify-center gap-2 pt-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span class="text-[9px] text-slate-500 tracking-wider font-mono">HOSTED INTEGRATED SITE · ALL METRICS OPTIMAL</span>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // NAVIGATION ACTIVE STATE
+        const nav = document.getElementById('nav');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section, .hero, #ai-playground');
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        function pingSystem() {
+            const btn = document.querySelector('button[onclick="pingSystem()"]');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '🔄 checking_nodes...';
+            btn.classList.add('animate-pulse');
+            
+            setTimeout(() => {
+                btn.innerHTML = '🟢 ALL NODES OPERATIONAL';
+                btn.classList.remove('animate-pulse');
+                btn.classList.add('border-emerald-500', 'text-emerald-400', 'bg-emerald-500/10');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('border-emerald-500', 'text-emerald-400', 'bg-emerald-500/10');
+                }, 3000);
+            }, 1200);
+        }
+        // MOBILE NAV TOGGLE
+        function toggleMobileNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // PROJECT ACCORDION
+        function toggleProject(id) {
+            const card = document.getElementById(id);
+            const wasOpen = card.classList.contains('open');
+            
+            document.querySelectorAll('.project-card').forEach(c => {
+                c.classList.remove('open');
+            });
+            
+            if (!wasOpen) {
+                card.classList.add('open');
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        // SCROLL REVEAL (Intersection Observer)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // BACKGROUND FLOATING PARTICLES (HERO)
+        function createParticles() {
+            const container = document.getElementById('particles');
+            if (container) {
+                for (let i = 0; i < 30; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                    particle.style.animationDelay = (Math.random() * 10) + 's';
+                    particle.style.width = (Math.random() * 3 + 1) + 'px';
+                    particle.style.height = particle.style.width;
+                    const colors = ['#6366f1', '#8b5cf6', '#06b6d4'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    container.appendChild(particle);
+                }
+            }
+        }
+        createParticles();
+
+        // SMOOTH SCROLL FOR ANCHORS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ==========================================
+        // ATMOSPHERIC DIGITAL RAIN / STARDUST ENGINE
+        // ==========================================
+        const canvas = document.getElementById('particles-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+            const colors = [
+                'rgba(6, 182, 212, 0.45)',  /* Cyber Cyan */
+                'rgba(139, 92, 246, 0.4)',  /* Dream Purple */
+                'rgba(16, 185, 129, 0.35)', /* Eco Emerald */
+                'rgba(255, 255, 255, 0.3)'  /* Pure white stardust */
+            ];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            }
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                    this.y = Math.random() * canvas.height;
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = -20;
+                    this.size = Math.random() * 2.2 + 1.2; /* Enlarged and sharpened particles */
+                    this.speedY = Math.random() * 0.9 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.35;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.5 + 0.4;
+                    this.angle = Math.random() * Math.PI * 2;
+                    this.swaySpeed = Math.random() * 0.02 + 0.01;
+                }
+
+                update(mX, mY) {
+                    this.y += this.speedY;
+                    this.x += this.speedX + Math.sin(this.angle) * 0.25;
+                    this.angle += this.swaySpeed;
+
+                    // Mouse Interaction Field (Magnetic push)
+                    if (mX && mY) {
+                        const dx = this.x - mX;
+                        const dy = this.y - mY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const pushRadius = 130;
+
+                        if (distance < pushRadius) {
+                            const force = (pushRadius - distance) / pushRadius;
+                            const angle = Math.atan2(dy, dx);
+                            this.x += Math.cos(angle) * force * 2;
+                            this.y += Math.sin(angle) * force * 2;
+                        }
+                    }
+
+                    if (this.y > canvas.height + 10 || this.x < -10 || this.x > canvas.width + 10) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 8; /* Intense neon stardust glow */
+                    ctx.shadowColor = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            function initParticles() {
+                particlesArray = [];
+                // Increased particle density to 120
+                const particleCount = 120;
+                for (let i = 0; i < particleCount; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+
+            let mouseXForParticles = null;
+            let mouseYForParticles = null;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseXForParticles = e.clientX;
+                mouseYForParticles = e.clientY;
+            });
+
+            window.addEventListener('mouseleave', () => {
+                mouseXForParticles = null;
+                mouseYForParticles = null;
+            });
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update(mouseXForParticles, mouseYForParticles);
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animateParticles);
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            animateParticles();
+        }
+
+        // ==========================================
+        // DYNAMIC COLLAPSIBLE ORBITS CONTROLLER
+        // ==========================================
+        function toggleOrbitScale() {
+            const card = document.getElementById('orbit-card');
+            const statusText = document.getElementById('orbit-status');
+            
+            card.classList.toggle('orbit-collapsed');
+            
+            if (card.classList.contains('orbit-collapsed')) {
+                statusText.innerHTML = '🟢 ORBIT SYSTEM COHERENCE: COMPRESSED';
+                statusText.className = 'text-brand-purple ml-auto transition-colors duration-300';
+            } else {
+                statusText.innerHTML = '⚡ ORBIT SYSTEM COHERENCE: EXPANDED';
+                statusText.className = 'text-brand-cyan ml-auto transition-colors duration-300';
+            }
+        }
+
+        // CUSTOM TRAILING CURSOR ENGINE (Linear Interpolation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const dot = document.getElementById('cursor-dot');
+            const outline = document.getElementById('cursor-outline');
+            
+            if (!dot || !outline) return;
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            let dotX = 0;
+            let dotY = 0;
+            let outlineX = 0;
+            let outlineY = 0;
+
+            const dotSpeed = 0.28;
+            const outlineSpeed = 0.045; /* High lag factor to create elastic wide dynamic trail */
+
+            let isCursorActive = false;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                if (!isCursorActive) {
+                    dot.style.opacity = '1';
+                    outline.style.opacity = '1';
+                    isCursorActive = true;
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                dot.style.opacity = '0';
+                outline.style.opacity = '0';
+                isCursorActive = false;
+            });
+
+            function updateCoordinates() {
+                dotX += (mouseX - dotX) * dotSpeed;
+                dotY += (mouseY - dotY) * dotSpeed;
+
+                outlineX += (mouseX - outlineX) * outlineSpeed;
+                outlineY += (mouseY - outlineY) * outlineSpeed;
+
+                dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
+                outline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+
+                requestAnimationFrame(updateCoordinates);
+            }
+            requestAnimationFrame(updateCoordinates);
+
+            function updateHoverListeners() {
+                const targets = document.querySelectorAll('a, button, [role="button"], [onclick], .project-header, .interactive-card, .skill-tag, #orbit-card, #ai-playground button');
+                targets.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        document.body.classList.add('cursor-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        document.body.classList.remove('cursor-hover');
+                    });
+                });
+            }
+            updateHoverListeners();
+
+            const observer = new MutationObserver(updateHoverListeners);
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+
+        // ==========================================
+        // DOLPHIN WORKSPACE MOCK INTERACTION ENGINE
+        // ==========================================
+        let dolphinState = { step: 0 };
+        function simulateDolphinAction(action) {
+            const screen = document.getElementById('dolphin-screen');
+            if (action === 'reset') {
+                dolphinState.step = 0;
+                screen.innerHTML = `<div class="text-slate-500">// Hệ thống sẵn sàng. Vui lòng bấm một thao tác ở trên...</div>`;
+                return;
+            }
+
+            if (action === 'create') {
+                dolphinState.step = 1;
+                screen.innerHTML = `
+                    <div class="text-emerald-400">✔ Khởi tạo thành công tệp 'GhiChu.txt' trong Documents/ThucHanh_NguyenLeNgocBach/</div>
+                    <div class="text-slate-400 mt-1 flex items-center gap-1.5">📄 GhiChu.txt (0 bytes, 17:01)</div>
+                `;
+            } else if (action === 'rename') {
+                if (dolphinState.step < 1) {
+                    screen.innerHTML = `<div class="text-red-400">❌ [LỖI] Vui lòng bấm tạo tệp GhiChu.txt trước!</div>`;
+                    return;
+                }
+                dolphinState.step = 2;
+                screen.innerHTML = `
+                    <div class="text-emerald-400">✔ Đổi tên tệp thành công sử dụng phím F2 hoặc Rename.</div>
+                    <div class="text-brand-purple mt-1 flex items-center gap-1.5">📄 GhiChuQuanTrong.txt (0 bytes, 17:02)</div>
+                `;
+            } else if (action === 'copy') {
+                if (dolphinState.step < 2) {
+                    screen.innerHTML = `<div class="text-red-400">❌ [LỖI] Bạn phải tạo tệp và đổi tên tệp trước khi sao chép!</div>`;
+                    return;
+                }
+                screen.innerHTML = `
+                    <div class="text-emerald-400">✔ Đã sao chép GhiChuQuanTrong.txt sang Documents/.../TaiLieu/</div>
+                    <div class="text-slate-500 mt-2">// Cấu trúc cây thư mục lúc này:</div>
+                    <div class="text-brand-cyan pl-2">
+                        Documents/<br>
+                        └── ThucHanh_NguyenLeNgocBach/<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;├── GhiChuQuanTrong.txt<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;└── TaiLieu/<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── GhiChuQuanTrong.txt (bản sao tệp)
+                    </div>
+                `;
+            }
+        }
+
+        // ==========================================
+        // GOOGLE SCHOLAR INTERACTIVE QUERIES
+        // ==========================================
+        function runScholarQuery(mode) {
+            const results = document.getElementById('scholar-results');
+            const input = document.getElementById('scholar-input');
+            
+            if (mode === 1) {
+                input.value = '"data science" AND "digital era" site:scholar.google.com';
+                results.innerHTML = `
+                    <div class="text-slate-400">[1] <span class="text-white font-bold">Dunleavy & Margetts (2023)</span> - Data science, Artificial Intelligence and the Third Wave of Digital Era Governance.</div>
+                    <div class="text-slate-500 pl-4">Bàn luận chi tiết về tầm quan trọng của AI và Khoa học dữ liệu trong làn sóng quản trị số thứ 3.</div>
+                `;
+            } else if (mode === 2) {
+                input.value = '"data science" filetype:pdf';
+                results.innerHTML = `
+                    <div class="text-slate-400">[1] <span class="text-white font-bold">Efron & Hastie (Computer Age Statistical Inference)</span> [PDF]</div>
+                    <div class="text-slate-500 pl-4">Hệ thống hóa sâu sắc các thuật toán thống kê hiện đại cho khoa học dữ liệu.</div>
+                `;
+            } else if (mode === 3) {
+                input.value = 'site:lic.vnu.edu.vn "data warehouse"';
+                results.innerHTML = `
+                    <div class="text-slate-400">[1] <span class="text-white font-bold">Vaisman & Zimányi</span> - Data Warehouse Systems: Design and Implementation.</div>
+                    <div class="text-slate-500 pl-4">Tài liệu điện tử chính thống của Thư viện Đại học Quốc gia Hà Nội về kiến trúc kho dữ liệu.</div>
+                `;
+            }
+        }
+
+        // ==========================================
+        // PROMPT GEMINI TAB SWITCH CONTROLLER
+        // ==========================================
+        const promptData = {
+            basic: {
+                input: '"Tóm tắt cho tôi bài viết này: Climate Changes through Data Science: Understanding and Mitigating Environmental Crisis"',
+                output: 'Kết quả tóm tắt chung chung, các ý lộn xộn, độ dài không kiểm soát được. Chỉ phù hợp để đọc lướt nhanh nội dung thô.'
+            },
+            medium: {
+                input: '"Hãy tóm tắt bài viết sau thành 3 phần: Giới thiệu, Nội dung chính (5 gạch đầu dòng), và Kết luận. Giữ độ dài dưới 300 chữ: Climate Changes through Data Science..."',
+                output: 'Cấu trúc hóa (Formatting constraints) và chỉ định độ dài chặt chẽ. Kết quả rõ ràng đúng form yêu cầu nhưng văn phong vẫn còn máy móc và chưa làm nổi bật được "insight" quan trọng nhất.'
+            },
+            advanced: {
+                input: '"Đóng vai một Giáo sư Đại học (Role-prompting). Đọc bài báo học thuật sau đây. Trước tiên, hãy phân tích từng luận điểm chính (Chain-of-thought). Sau đó, tóm tắt nó cho một sinh viên năm nhất hiểu theo cấu trúc: 1. Bối cảnh, 2. Phát hiện chính, 3. Ứng dụng thực tế (Few-shot)..."',
+                output: 'Giọng văn trở nên chuẩn sư phạm và cực kỳ dễ hiểu. Lập luận chặt chẽ không chỉ tóm tắt mà còn định hướng cách học tối ưu cho sinh viên.'
+            }
+        };
+
+        function switchPromptTab(tab) {
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.className = 'px-4 py-2 border-r border-white/5 text-slate-400 hover:text-white';
+            });
+            const activeBtn = document.getElementById('tab-' + tab);
+            activeBtn.className = 'px-4 py-2 border-r border-white/5 bg-white/5 text-white';
+
+            document.getElementById('prompt-input-display').innerText = promptData[tab].input;
+            document.getElementById('prompt-output-display').innerText = promptData[tab].output;
+        }
+
+        // ========================================================
+        // ✨ GEMINI API CORE WORKSPACE & SANDBOX SYSTEM ✨
+        // ========================================================
+        const apiKey = "gg-gcli-0c7huZSjRN_YzCmx06lwOsiMQBYyFVNaAEaD8XvJXYI"; // Runtime automatically injected by the environment.
+        const geminiModel = "gemini-2.5-pro";
+        
+        // Exponential backoff executor for bulletproof API calls
+        async function callGemini(prompt, systemInstruction = "") {
+            const endpoint = `https://gcli.ggchan.dev/v1/chat/completions`;
+            const messages = [];
+            if (systemInstruction) {
+                messages.push({ role: "system", content: systemInstruction });
+            }
+            messages.push({ role: "user", content: prompt });
+
+            const payload = {
+                model: geminiModel,
+                messages
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${apiKey}`
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    const text = result.choices?.[0]?.message?.content;
+                    if (!text) {
+                        throw new Error("Invalid API response format");
+                    }
+                    return text;
+                } catch (error) {
+                    if (i === 4) throw error; // Rethrow at last attempt
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // Exponential backoff: 1s, 2s, 4s, 8s, 16s
+                }
+            }
+        }
+
+        // Custom Notification Alert
+        function showCustomAlert(msg) {
+            const alertBox = document.getElementById('ai-custom-alert');
+            const alertText = document.getElementById('ai-alert-text');
+            alertText.innerText = msg;
+            alertBox.classList.remove('hidden');
+        }
+        function closeCustomAlert() {
+            document.getElementById('ai-custom-alert').classList.add('hidden');
+        }
+
+        // Switch Playground Tabs
+        function switchPlaygroundTab(tabId) {
+            // Hide all panels
+            document.getElementById('play-panel-quiz').classList.add('hidden');
+            document.getElementById('play-panel-advisor').classList.add('hidden');
+            document.getElementById('play-panel-generator').classList.add('hidden');
+
+            // Reset tab styling
+            document.querySelectorAll('[id^="play-tab-"]').forEach(btn => {
+                const title = btn.querySelector('p');
+                title.className = 'font-bold text-slate-300 font-mono text-sm';
+                btn.className = "w-full text-left p-4 bg-[#12121a] hover:bg-[#1a1a2e] border border-white/5 rounded-xl transition-all flex items-center gap-3";
+            });
+
+            // Show active panel & styling
+            document.getElementById('play-panel-' + tabId).classList.remove('hidden');
+            const activeTabBtn = document.getElementById('play-tab-' + tabId);
+            const activeTitle = activeTabBtn.querySelector('p');
+            
+            if (tabId === 'quiz') {
+                activeTabBtn.className = "w-full text-left p-4 bg-[#12121a] border border-cyan-500/30 rounded-xl transition-all flex items-center gap-3 shadow-[0_0_20px_rgba(6,182,212,0.1)]";
+                activeTitle.className = 'font-bold text-brand-cyan font-mono text-sm';
+            } else if (tabId === 'advisor') {
+                activeTabBtn.className = "w-full text-left p-4 bg-[#12121a] border border-purple-500/30 rounded-xl transition-all flex items-center gap-3 shadow-[0_0_20px_rgba(139,92,246,0.1)]";
+                activeTitle.className = 'font-bold text-brand-purple font-mono text-sm';
+            } else if (tabId === 'generator') {
+                activeTabBtn.className = "w-full text-left p-4 bg-[#12121a] border border-emerald-500/30 rounded-xl transition-all flex items-center gap-3 shadow-[0_0_20px_rgba(16,185,129,0.1)]";
+                activeTitle.className = 'font-bold text-emerald-400 font-mono text-sm';
+            }
+        }
+
+        // ✨ FEATURE 1: Generative quiz engine ✨
+        let currentQuizData = null;
+        async function generateAIQuiz() {
+            const loader = document.getElementById('ai-loader');
+            if (loader) loader.classList.remove('hidden');
+            closeCustomAlert();
+
+            const systemInstruction = "Bạn là máy tạo câu hỏi trắc nghiệm chuyên nghiệp. Bạn CHỈ được phép trả lời bằng một chuỗi JSON thuần túy, tuyệt đối không bao gồm markdown hay bất kỳ văn bản nào khác ngoài JSON. JSON phải có cấu trúc: { \"question\": \"câu hỏi\", \"options\": [\"A\", \"B\", \"C\", \"D\"], \"answerIndex\": 0, \"explanation\": \"giải thích ngắn gọn lý do đúng\" }";
+            const prompt = "Hãy tạo một câu hỏi trắc nghiệm tiếng Việt cực hay và đầy tính học thuật về một trong các chủ đề sau: Quy trình CRISP-DM, Khoa học dữ liệu, Hệ điều hành Linux, prompt engineering, hoặc đạo đức khi sử dụng AI. Trả về đúng định dạng JSON yêu cầu.";
+
+            try {
+                const responseText = await callGemini(prompt, systemInstruction);
+                // Clean the output if the model wrapped it in markdown codeblocks
+                const cleanJson = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+                currentQuizData = JSON.parse(cleanJson);
+
+                const questionBox = document.getElementById('quiz-question-box');
+                if (questionBox) {
+                    questionBox.innerHTML = `
+                        <div class="p-4 bg-black/30 border border-white/5 rounded-xl space-y-3">
+                            <p class="font-bold text-white leading-relaxed text-sm">${currentQuizData.question}</p>
+                            <div class="grid grid-cols-1 gap-2 pt-2">
+                                ${currentQuizData.options.map((opt, index) => `
+                                    <button onclick="selectQuizOption(${index})" class="w-full text-left p-3 bg-[#1a1a2e]/55 hover:bg-[#22223a] border border-white/5 hover:border-brand-cyan/40 rounded-lg text-xs transition-all flex items-center gap-3" id="opt-btn-${index}">
+                                        <span class="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-bold text-[10px] text-slate-400 select-none">${String.fromCharCode(65 + index)}</span>
+                                        <span>${opt}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div id="quiz-explanation-box" class="hidden p-3 bg-brand-cyan/5 border border-brand-cyan/20 rounded-lg text-[11px] text-slate-400 mt-2">
+                                <p class="text-brand-cyan font-bold mb-1">// ✨ ĐÁNH GIÁ CỦA GEMINI AI ✨</p>
+                                <span id="quiz-explanation-text"></span>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                console.error(err);
+                showCustomAlert("Không thể tải câu hỏi từ Gemini API do lỗi cấu trúc kết xuất hoặc lỗi mạng. Vui lòng bấm tạo lại!");
+            } finally {
+                if (loader) loader.classList.add('hidden');
+            }
+        }
+
+        function selectQuizOption(index) {
+            if (!currentQuizData) return;
+            const explanationBox = document.getElementById('quiz-explanation-box');
+            const explanationText = document.getElementById('quiz-explanation-text');
+            
+            // Disable all option buttons
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`opt-btn-${i}`);
+                if (btn) btn.disabled = true;
+            }
+
+            const chosenBtn = document.getElementById(`opt-btn-${index}`);
+            const correctBtn = document.getElementById(`opt-btn-${currentQuizData.answerIndex}`);
+
+            if (index === currentQuizData.answerIndex) {
+                if (chosenBtn) chosenBtn.classList.add('border-emerald-500', 'bg-emerald-500/10');
+                if (explanationText) explanationText.innerHTML = `<strong class="text-emerald-400">Chính xác! Đạt điểm tuyệt đối.</strong><br>${currentQuizData.explanation}`;
+            } else {
+                if (chosenBtn) chosenBtn.classList.add('border-red-500', 'bg-red-500/10');
+                if (correctBtn) correctBtn.classList.add('border-emerald-500', 'bg-emerald-500/10');
+                if (explanationText) explanationText.innerHTML = `<strong class="text-red-400">Rất tiếc, chưa chính xác.</strong><br>Đáp án đúng là ${String.fromCharCode(65 + currentQuizData.answerIndex)}. ${currentQuizData.explanation}`;
+            }
+
+            if (explanationBox) explanationBox.classList.remove('hidden');
+        }
+
+        // ✨ FEATURE 2: AI Advisor representative of Bách ✨
+        async function askAIAdvisor() {
+            const query = document.getElementById('ai-query-input').value.trim();
+            if (!query) {
+                showCustomAlert("Vui lòng nhập câu hỏi của bạn trước!");
+                return;
+            }
+
+            const loader = document.getElementById('ai-loader');
+            if (loader) loader.classList.remove('hidden');
+            closeCustomAlert();
+
+            const responseBox = document.getElementById('ai-advisor-response');
+            
+            const systemInstruction = `
+                Bạn là trợ lý ảo đại diện cho Nguyễn Lê Ngọc Bách (sinh viên Khoa học Dữ liệu khóa 2025, UET-VNU, MSV: 25024080).
+                Hãy trả lời các câu hỏi về Ngọc Bách và các bài tập của Bách một cách thông minh, tự tin, mang đậm màu sắc của một kỹ sư khoa học dữ liệu UET.
+                Dưới đây là thông tin thực hành tóm tắt của Bách:
+                - Bài 1: Thao tác Dolphin File Manager trên Linux tạo thư mục 'ThucHanh_NguyenLeNgocBach', GhiChuQuanTrong.txt, di chuyển file, xóa vĩnh viễn Shift+Del.
+                - Bài 2: Tìm kiếm Google Scholar chủ đề 'Vai trò Khoa học dữ liệu thời đại số' lọc pdf, đánh giá CRAAP xếp hạng tài liệu Dunleavy 10/10, Efron 10/10.
+                - Bài 3: So sánh 3 cấp độ Prompt Gemini (Zero-shot vs Cấu trúc ràng buộc vs Role-prompting + CoT + Few-shot) cho thấy CoT giảm ảo giác AI.
+                - Bài 4: Hợp tác Trello Kanban phân nhãn màu Đỏ/Vàng/Xanh và Docs bình luận 'ê chỗ ni bị đè mặt =))))'.
+                - Bài 5: Infographic CRISP-DM vẽ vector Smart Grid và PostgreSQL, AI đóng vai trò Scaffolding (40%).
+                - Bài 6: Đạo đức AI chuẩn RMIT trích dẫn minh bạch, 6 nguyên tắc cá nhân: Co-pilot, Zero-trust, Minh bạch, Riêng tư, Dùng để học, Bảo vệ văn phong.
+                - Bài 7: Tổng quan Graphene bám anode pin Lithium-ion Li+ sạc 12 phút, tuổi thọ 3000 chu kỳ, thách thức sản xuất quy mô công nghiệp Zhao 2025.
+                Hãy trả lời thật súc tích, chuyên nghiệp và có duyên bằng tiếng Việt.
+            `;
+
+            try {
+                const answer = await callGemini(query, systemInstruction);
+                if (responseBox) {
+                    responseBox.innerHTML = `
+                        <div class="space-y-1">
+                            <p class="text-brand-purple font-bold">// ✨ PHẢN HỒI ĐẠI DIỆN NGỌC BÁCH: ✨</p>
+                            <p class="text-slate-200 mt-1">${answer.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                console.error(err);
+                showCustomAlert("Kết nối với trợ lý ảo bị gián đoạn. Vui lòng thử lại!");
+            } finally {
+                if (loader) loader.classList.add('hidden');
+            }
+        }
+
+        // ✨ FEATURE 3: CRISP-DM Project Idea generator ✨
+        async function generateDSProject() {
+            const topic = document.getElementById('ai-topic-input').value.trim();
+            if (!topic) {
+                showCustomAlert("Vui lòng nhập chủ đề quan tâm của bạn!");
+                return;
+            }
+
+            const loader = document.getElementById('ai-loader');
+            if (loader) loader.classList.remove('hidden');
+            closeCustomAlert();
+
+            const responseBox = document.getElementById('ai-generator-response');
+
+            const systemInstruction = "Bạn là Giáo sư Khoa học Dữ liệu hàng đầu tại UET-VNU. Hãy thiết kế một dự án Khoa học Dữ liệu cực kỳ sáng tạo, thực tế, giải quyết được nỗi đau lớn của ngành được cung cấp. Phác thảo dự án ngắn gọn theo đúng 3 giai đoạn đầu tiên của chuẩn CRISP-DM: 1. Business Understanding (Nỗi đau & mục tiêu), 2. Data Understanding (Thu thập dữ liệu gì, tính năng gì), 3. Modeling & Evaluation (Sử dụng thuật toán học máy nào: ví dụ Random Forest, XGBoost hay Transformer và chỉ số đánh giá). Trình bày súc tích, dùng ngôn từ đậm chất kỹ sư.";
+            const prompt = `Hãy lập thiết kế CRISP-DM cho dự án Khoa học Dữ liệu trong lĩnh vực: ${topic}`;
+
+            try {
+                const answer = await callGemini(prompt, systemInstruction);
+                if (responseBox) {
+                    responseBox.innerHTML = `
+                        <div class="space-y-2">
+                            <p class="text-emerald-400 font-bold">// ✨ BẢN PHÁC THẢO DỰ ÁN CRISP-DM SÁNG TẠO: ✨</p>
+                            <p class="text-slate-300 whitespace-pre-wrap">${answer}</p>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                console.error(err);
+                showCustomAlert("Không thể khởi tạo bản phác thảo do lỗi kết nối. Hãy thử lại!");
+            } finally {
+                if (loader) loader.classList.add('hidden');
+            }
+        }
+    </script>
+
+</body>
+</html>
