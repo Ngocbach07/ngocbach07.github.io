@@ -67,10 +67,15 @@
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.7;
             overflow-x: hidden;
+            background-image: linear-gradient(rgba(11, 11, 18, 0.82), rgba(11, 11, 18, 0.82)), url('./wp7878301.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: var(--bg-primary);
         }
 
         /* CUSTOM CURSOR SYSTEM */
@@ -666,7 +671,7 @@
         }
 
         .project-card.open .project-body {
-            max-height: 5000px;
+            max-height: 20000px;
         }
 
         .project-content {
@@ -1267,6 +1272,11 @@
                             <p>Làm quen toàn diện với hệ điều hành Linux, thiết lập cấu trúc quản lý tập tin logic bao gồm việc tạo, sao chép, di chuyển tệp, phân biệt chế độ xóa Trash và xóa vĩnh viễn (Shift + Delete).</p>
                         </div>
 
+                        <div class="project-section">
+                            <h4>📌 Báo cáo môi trường</h4>
+                            <p>Bài tập được thực hiện trên hệ điều hành Linux, sử dụng trình quản lý tệp <strong>Dolphin File Manager</strong> để minh họa toàn bộ thao tác quản lý dữ liệu số.</p>
+                        </div>
+
                         <!-- Dolphin Interactive Simulation Widget -->
                         <div class="project-section">
                             <h4>🖥️ Giả lập Trình quản lý Tệp tin Dolphin (Linux)</h4>
@@ -1308,20 +1318,91 @@
                         </div>
 
                         <div class="project-section">
-                            <h4>📋 Quá trình thực hiện thực tế</h4>
+                            <h4>📋 Quá trình thực hiện thực tế (12 bước chi tiết)</h4>
+
+                            <p><strong>Bước 1 — Mở Dolphin:</strong> Nhấp vào biểu tượng thư mục màu xanh để mở ứng dụng (có thể tìm ứng dụng bằng cách tìm kiếm).</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh1.png" alt="Bước 1 - Mở Dolphin File Manager" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 2 — Truy cập vào ổ đĩa/Thư mục:</strong> Sau khi mở ứng dụng, ở phần góc trái màn hình, hãy chọn thư mục "Documents".</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh2.png" alt="Bước 2 - Truy cập Documents" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 3 — Tạo thư mục mới:</strong> Nhấp chuột phải vào khoảng trống, rồi chọn "Create New", rồi nhấn vào "Folder" (hoặc nhấn tổ hợp phím CTRL + SHIFT + N). Đặt tên thư mục là <code>ThucHanh_NguyenLeNgocBach</code>, rồi nhấn "Ok" để tạo thư mục.</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh3.png" alt="Bước 3 - Tạo thư mục mới" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 4 — Vào thư mục vừa tạo:</strong> Nhấp đúp vào thư mục <code>ThucHanh_NguyenLeNgocBach</code>.</p>
+
+                            <p><strong>Bước 5 — Tạo tệp tin văn bản:</strong> Nhấp chuột phải vào khoảng trống, chọn "Create New", chọn "Text File". Đặt tên là <code>GhiChu.txt</code>, rồi nhấn "Ok" để tạo file.</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh4.png" alt="Bước 5 - Tạo tệp GhiChu.txt" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 6 — Đổi tên tệp tin:</strong> Nhấp chuột phải vào tệp <code>GhiChu.txt</code> → chọn Rename. Đổi tên thành <code>GhiChuQuanTrong.txt</code>. Nhấn Enter.</p>
+
+                            <p><strong>Bước 7 — Tạo thư mục con:</strong> Trong thư mục <code>ThucHanh_NguyenLeNgocBach</code>, nhấp chuột phải vào khoảng trống, chọn "Create New", chọn "Folder". Đặt tên là <code>TaiLieu</code>.</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh5.png" alt="Bước 7 - Tạo thư mục con TaiLieu" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 8 — Sao chép tệp tin (Copy & Paste):</strong></p>
                             <ul>
-                                <li><strong>Báo cáo môi trường:</strong> Bài tập được hoàn thành tối ưu trên hệ điều hành Linux sử dụng Dolphin File Manager.</li>
-                                <li><strong>Khởi tạo:</strong> Tạo lập thành công cây thư mục <code>ThucHanh_NguyenLeNgocBach</code> trong phân mục hệ thống <code>Documents/</code>.</li>
-                                <li><strong>Quản lý tệp tin:</strong> Tạo văn bản thô <code>GhiChu.txt</code>, đổi tên thành <code>GhiChuQuanTrong.txt</code> và tạo thư mục con <code>TaiLieu/</code>.</li>
-                                <li><strong>Sao chép & Di chuyển:</strong> Thực hiện sao chép file sang <code>TaiLieu/</code>, tạo lập <code>DiChuyen.txt</code> và di chuyển toàn diện sử dụng lệnh Cut-Paste.</li>
-                                <li><strong>Xóa vĩnh viễn:</strong> Thực hành xóa tệp vào Trash và xóa bỏ triệt để ngoài vùng nhớ bằng phím tắt <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Shift + Delete</kbd>.</li>
+                                <li>Nhấp chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> → chọn Copy (hoặc chọn tệp rồi nhấn <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Ctrl + C</kbd>).</li>
                             </ul>
+                            <img src="./extracted_images/tuan1/tuan1_anh6.png" alt="Bước 8a - Lệnh Copy" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <ul>
+                                <li>Nhấp đúp vào thư mục <code>TaiLieu</code>, nhấp chuột phải vào khoảng trống bên trong → chọn Paste One File (hoặc nhấn <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Ctrl + V</kbd>). Bây giờ bạn có một bản sao của tệp trong thư mục <code>TaiLieu</code>.</li>
+                            </ul>
+                            <img src="./extracted_images/tuan1/tuan1_anh7.png" alt="Bước 8b - Paste One File vào TaiLieu" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 9 — Di chuyển tệp tin (Cut & Paste):</strong></p>
+                            <ul>
+                                <li>Quay lại thư mục <code>ThucHanh_NguyenLeNgocBach</code>. Tạo một tệp mới tên là <code>DiChuyen.txt</code>.</li>
+                                <li>Nhấp chuột phải vào tệp <code>DiChuyen.txt</code> → chọn Cut (hoặc chọn tệp rồi nhấn <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Ctrl + X</kbd>).</li>
+                            </ul>
+                            <img src="./extracted_images/tuan1/tuan1_anh8.png" alt="Bước 9a - Lệnh Cut trên DiChuyen.txt" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <ul>
+                                <li>Nhấp đúp vào thư mục <code>TaiLieu</code>, nhấp chuột phải vào khoảng trống → chọn Paste (hoặc nhấn <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Ctrl + V</kbd>). Tệp gốc đã biến mất khỏi vị trí cũ và chỉ còn ở vị trí mới.</li>
+                            </ul>
+                            <img src="./extracted_images/tuan1/tuan1_anh9.png" alt="Bước 9b - Di chuyển hoàn tất" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 10 — Xóa tệp tin:</strong> Trong thư mục <code>TaiLieu</code>, nhấp chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> → chọn Move to Trash. Tệp sẽ được chuyển vào Thùng rác (Trash).</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh10.png" alt="Bước 10 - Move to Trash" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 11 — Xóa vĩnh viễn:</strong> Chọn tệp <code>DiChuyen.txt</code>, nhấn giữ phím <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Shift</kbd> và nhấn phím <kbd class="px-1 py-0.5 bg-white/10 rounded text-white text-[10px]">Delete</kbd>. Một cảnh báo sẽ hiện ra. Nếu đồng ý, tệp sẽ bị xóa vĩnh viễn mà không qua Thùng rác.</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh11.png" alt="Bước 11 - Shift + Delete xóa vĩnh viễn" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <p><strong>Bước 12 — Khôi phục từ Thùng rác (Tùy chọn):</strong> Vào mục Trash ở góc dưới màn hình bên trái. Tìm tệp <code>GhiChuQuanTrong.txt</code> đã xóa, nhấp chuột phải vào nó và chọn <em>Restore to Former Location</em>. Tệp sẽ quay trở lại vị trí ban đầu.</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh14.png" alt="Bước 12 - Khôi phục từ Thùng rác" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
+                            <!-- Download link placed immediately after the LAST textual step (Bước 12) so it is always visible -->
+                            <div class="mt-6 mb-6 flex justify-center">
+                                <a href="./docx_files/tuan1.docx" download
+                                   class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                                    📄 Tải file Word gốc (tuan1.docx)
+                                </a>
+                            </div>
                         </div>
+
+                        <div class="project-section">
+                            <h4>🖼️ Minh chứng hình ảnh bổ sung (Các bước 1 - 12)</h4>
+                            <p>Hình ảnh minh họa đầy đủ các thao tác trên trình quản lý tệp Dolphin File Manager (Linux) theo từng bước trong bài thực hành Tuần 1:</p>
+                            <img src="./extracted_images/tuan1/tuan1_anh15.png" alt="Minh chứng thao tác 1" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh16.png" alt="Minh chứng thao tác 2" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh17.png" alt="Minh chứng thao tác 3" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh18.png" alt="Minh chứng thao tác 4" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh19.png" alt="Minh chứng thao tác 5" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh20.png" alt="Minh chứng thao tác 6" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh21.png" alt="Minh chứng thao tác 7" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh22.png" alt="Minh chứng thao tác 8" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan1/tuan1_anh23.png" alt="Minh chứng thao tác 9" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                        </div>
+
                         <div class="project-section">
                             <h4>💡 Bài học rút ra</h4>
-                            <p>Việc làm quen với quản lý cây thư mục và quy tắc lưu trữ trên Linux giúp xây dựng thói quen tổ chức dữ liệu chuẩn hóa, phục vụ đắc lực cho các hoạt động quản lý Database và Pipeline dữ liệu trong tương lai.</p>
+                            <p>Việc làm quen với quản lý cây thư mục và quy tắc lưu trữ trên Linux giúp xây dựng thói quen tổ chức dữ liệu chuẩn hóa, phục vụ đắc lực cho các hoạt động quản lý Database và Pipeline dữ liệu trong tương lai. Phân biệt rõ <strong>Trash</strong> (có thể khôi phục) và <strong>Shift + Delete</strong> (xóa vĩnh viễn) là kỹ năng sống còn cho mọi nhà khoa học dữ liệu.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan1.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan1.docx)
+                        </a>
+
+                    </div></div>
                 </div>
             </div>
 
@@ -1388,37 +1469,91 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="font-semibold text-white">Dunleavy & Margetts (2023)</td>
+                                        <td>1</td>
+                                        <td class="font-semibold text-white">Dunleavy, P. and Margetts, H. (2023) 'Data science, Artificial Intelligence and the Third Wave of Digital Era Governance', Public Policy and Administration, 40(2).</td>
                                         <td>Tạp chí học thuật</td>
                                         <td><span class="rating-display">10/10</span></td>
-                                        <td>Xuất bản năm 2023 cực kỳ cập nhật, bàn về làn sóng quản trị số thứ 3.</td>
+                                        <td>Tác giả: GS đầu ngành. Cập nhật: Cực tốt (2023). NXB: Sage (Uy tín cao).</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-semibold text-white">Efron & Hastie (Computer Age Inference)</td>
+                                        <td>2</td>
+                                        <td class="font-semibold text-white">Efron, B. and Hastie, T. Computer Age Statistical Inference: Algorithms, Evidence, and Data Science.</td>
                                         <td>Sách chuyên khảo</td>
                                         <td><span class="rating-display">10/10</span></td>
-                                        <td>Sách kinh điển về thuật toán, nền tảng toán học cho Data Science.</td>
+                                        <td>Tác giả: Những huyền thoại ngành Thống kê. Phương pháp: Hệ thống hóa thuật toán cốt lõi.</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-semibold text-white">CARE Principles (Indigenous Governance)</td>
-                                        <td>Khung tài liệu chuẩn</td>
+                                        <td>3</td>
+                                        <td class="font-semibold text-white">The CARE Principles for Indigenous Data Governance.</td>
+                                        <td>Tài liệu chuẩn</td>
                                         <td><span class="rating-display">9.5/10</span></td>
-                                        <td>Tiêu chuẩn quốc tế cao nhất về đạo đức và luật pháp quản trị dữ liệu.</td>
+                                        <td>Nội dung: Khung nguyên tắc quốc tế về đạo đức dữ liệu. Tầm quan trọng: Thiết yếu cho phần phân tích quản trị.</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-semibold text-white">Van Der Aalst (2016) — Data Science</td>
+                                        <td>4</td>
+                                        <td class="font-semibold text-white">Van Der Aalst, W. (2016) 'Data Science in Action', Process Mining, pp. 3-23.</td>
+                                        <td>CS dữ liệu</td>
+                                        <td><span class="rating-display">9.0/10</span></td>
+                                        <td>Tác giả: Chuyên gia số 1 về Process Mining. Hạn chế: Thiếu cập nhật về GenAI/LLM (do xuất bản 2016).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td class="font-semibold text-white">Vaisman, A. and Zimányi, E. Data Warehouse Systems: Design and Implementation [Electronic resource]. Available at: lic.vnu.edu.vn.</td>
+                                        <td>Thư viện VNU</td>
+                                        <td><span class="rating-display">9.0/10</span></td>
+                                        <td>Nội dung: Tài liệu chuẩn về kiến trúc kho dữ liệu. Được kiểm định bởi ĐHQG Hà Nội.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td class="font-semibold text-white">Fan, J., Li, R., Zhang, C.-H. and Zou, H. Statistical Foundations of Data Science.</td>
                                         <td>Sách chuyên khảo</td>
                                         <td><span class="rating-display">9.0/10</span></td>
-                                        <td>Tác giả là chuyên gia đầu ngành. Hạn chế: Chưa có kiến thức GenAI.</td>
+                                        <td>Phương pháp: Nghiên cứu toán học chặt chẽ. Tác giả: Các giáo sư từ Princeton và Penn State.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td class="font-semibold text-white">Skiena, S.S. The Data Science Design Manual.</td>
+                                        <td>Sách chuyên khảo</td>
+                                        <td><span class="rating-display">8.5/10</span></td>
+                                        <td>Ưu điểm: Uy tín về thuật toán. Tính ứng dụng: Rất thực tế trong thiết kế hệ thống dữ liệu.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td class="font-semibold text-white">Evaluating COVID-19 Information and Risk-Averse Behaviours: Insights from Conjoint and Clustering Analyses in the UK, Japan, and Taiwan.</td>
+                                        <td>Tạp chí chuyên ngành</td>
+                                        <td><span class="rating-display">8.5/10</span></td>
+                                        <td>Phương pháp: Sử dụng Clustering/Conjoint Analysis. Nội dung: Ứng dụng DS giải quyết vấn đề xã hội.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td class="font-semibold text-white">Berthold, M.R. and Hand, D.J. Intelligent Data Analysis: An Introduction.</td>
+                                        <td>Sách chuyên khảo</td>
+                                        <td><span class="rating-display">8.0/10</span></td>
+                                        <td>Nội dung: Kiến thức nền tảng vững chắc về phân tích dữ liệu thông minh. Phù hợp cho sinh viên mới bắt đầu.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="project-section">
+                            <h4>🔍 Quy trình tìm kiếm 5 phần từ nguồn</h4>
+                            <ul>
+                                <li><strong>Phần 1 — Lựa chọn chủ đề và phạm vi:</strong> Chủ đề "Vai trò Khoa học Dữ liệu trong thời đại Công nghệ số" được chọn vì tính thực tiễn cao đối với ngành học. Phạm vi tìm kiếm được chia nhỏ thành 2 phần: Nền tảng kỹ thuật (Data Analytics, Data Processing, Data Mining, ML Algorithms) và Vai trò dữ liệu trong ngành công nghiệp.</li>
+                                <li><strong>Phần 2 — Nguồn tìm kiếm:</strong> Google Scholar, Microsoft Academic, Thư viện Trường (VNULic), các tạp chí khoa học liên ngành, sách chuyên khảo, Google Search, và công cụ AI Elicit để tổng hợp tài liệu.</li>
+                                <li><strong>Phần 3 — Thu thập tài liệu tham khảo:</strong> Cơ sở dữ liệu học thuật (Van Der Aalst 2016, Dunleavy & Margetts 2023, Data-Driven Process Discovery 2016, Vaisman & Zimányi), tạp chí khoa học (COVID-19 Conjoint & Clustering, CARE Principles), sách chuyên khảo (Efron & Hastie, Fan et al., Skiena, Cady, Berthold & Hand), nguồn khác (Samudra et al., Murumba).</li>
+                                <li><strong>Phần 4 — Đánh giá độ tin cậy:</strong> Mỗi nguồn được đánh giá chi tiết theo 3 tiêu chí: Ưu điểm, Nhược điểm, Độ tin cậy. Các nguồn uy tín đạt 9-10/10 như Dunleavy 2023 (10/10), Efron & Hastie (10/10), CARE Principles (9.5/10).</li>
+                                <li><strong>Phần 5 — Trình bày báo cáo & Danh mục tham khảo:</strong> Bảng tổng hợp chi tiết các tài liệu với đầy đủ thông tin về tác giả, năm xuất bản, loại nguồn, độ tin cậy, và tiêu chí đánh giá uy tín.</li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
                             <h4>💡 Bài học rút ra</h4>
                             <p>Xây dựng năng lực phân tích độ tin cậy dựa trên chỉ số H-index của tác giả và tính thời sự của ấn bản giúp nâng cao chất lượng nghiên cứu khoa học dữ liệu vượt trội.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan2.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan2.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
@@ -1470,18 +1605,73 @@
                         </div>
 
                         <div class="project-section">
-                            <h4>📋 Đánh giá và Phân tích tác động kỹ thuật</h4>
+                            <h4>📋 Phân tích 3 tác vụ học tập cốt lõi</h4>
                             <ul>
-                                <li><strong>Tác vụ 1:</strong> Tóm tắt bài báo "Climate Changes through Data Science" bằng kỹ thuật đóng vai Giáo sư.</li>
-                                <li><strong>Tác vụ 2:</strong> Giải thích cấu trúc trừu tượng của bộ nhớ Heap cho sinh viên năm nhất (Few-shot prompting).</li>
-                                <li><strong>Tác vụ 3:</strong> Xây dựng ngân hàng câu hỏi lập trình hướng đối tượng OOP dựa theo chuẩn cuốn sách kinh điển <i>"Programming Languages: Principles and Paradigms"</i>.</li>
+                                <li><strong>Tác vụ 1 — Tóm tắt bài đọc học thuật:</strong> Bài viết "Climate Changes through Data Science: Understanding and Mitigating Environmental Crisis". Mục tiêu: Nắm bắt nhanh các luận điểm chính, phương pháp nghiên cứu và kết luận. Thách thức: Dễ sa đà vào tiểu tiết, khó phân biệt thông tin nền và phát hiện cốt lõi, thiếu khả năng sàng lọc. Yêu cầu AI: Trích xuất chính xác, cấu trúc hóa mạch lạc, đơn giản hóa ngôn từ phức tạp.</li>
+                                <li><strong>Tác vụ 2 — Giải thích khái niệm phức tạp:</strong> Bộ nhớ Heap trong chương trình. Mục tiêu: Trừu tượng hóa định nghĩa, hình dung cấu trúc. Thách thức: Nhiều khái niệm mới phức tạp, hoạt động mang tính trừu tượng. Yêu cầu AI: Trích xuất thông tin hợp lệ có dẫn chứng nguồn, cấu trúc hóa mạch lạc, nhiều sơ đồ nguyên lý hoạt động.</li>
+                                <li><strong>Tác vụ 3 — Tạo bộ câu hỏi ôn tập:</strong> Lý thuyết lập trình hướng đối tượng (OOP). Mục tiêu: Bộ câu hỏi giúp tiếp thu lý thuyết, áp dụng vào bài tập khác nhau, ứng dụng thực tiễn. Thách thức: Chưa đủ kiến thức tự tạo bộ đề, thiếu khả năng phân chia dạng bài. Yêu cầu AI: Tạo bộ câu hỏi đầy đủ kiến thức sát trình độ, có lời giải và giải thích đầy đủ dễ hiểu.</li>
                             </ul>
                         </div>
+
+                        <div class="project-section">
+                            <h4>🧪 Bảng so sánh 3 cấp độ Prompt (Cơ bản → Cải tiến → Nâng cao)</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Phiên bản</th>
+                                        <th>Kỹ thuật áp dụng</th>
+                                        <th>Phân tích kết quả đầu ra</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-semibold text-white">Cơ bản</td>
+                                        <td>Zero-shot cơ bản</td>
+                                        <td>Kết quả chung chung, các ý lộn xộn, độ dài không kiểm soát được. Chỉ phù hợp để đọc lướt.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Cải tiến</td>
+                                        <td>Cấu trúc hóa (Formatting constraints), Chỉ định độ dài</td>
+                                        <td>AI trả về kết quả rõ ràng, đúng form yêu cầu. Tuy nhiên, văn phong vẫn còn hơi máy móc và chưa thực sự làm nổi bật được "insight" quan trọng nhất.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-semibold text-white">Nâng cao</td>
+                                        <td>Role-prompting, Chain-of-Thought, Few-shot</td>
+                                        <td>Sự khác biệt rõ rệt: Giọng văn trở nên sư phạm và dễ hiểu (nhờ đóng vai). Các lập luận được suy luận chặt chẽ (nhờ Chain-of-thought). Cấu trúc bám sát hoàn toàn ý đồ người học (nhờ Few-shot). Không chỉ tóm tắt mà còn định hướng cách học.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📊 Phân tích hiệu quả của Prompt — 3 yếu tố cốt lõi</h4>
+                            <ul>
+                                <li><strong>Tác động của Context (Bối cảnh) và Persona (Vai trò):</strong> Việc gán vai trò giúp AI thu hẹp "không gian trọng số" của nó, loại bỏ các từ vựng không phù hợp và tự động áp dụng văn phong của một chuyên gia. Đây là lý do Role-prompting cho kết quả tốt hơn.</li>
+                                <li><strong>Sức mạnh của Chain-of-Thought (Tư duy từng bước):</strong> Đối với các tác vụ giải thích khái niệm phức tạp, nếu ép AI ra kết quả ngay, nó dễ bị ảo giác (Hallucination). Bằng cách yêu cầu AI "phân tích trước, trả lời sau", chất lượng logic của câu trả lời tăng lên đáng kể.</li>
+                                <li><strong>Tính định dạng và Ràng buộc:</strong> Các giới hạn (độ dài, số lượng bullet point, cấu trúc đầu ra) đóng vai trò như chiếc khuôn, ép luồng dữ liệu khổng lồ của AI vào một hình thái có thể tiêu thụ được ngay lập tức cho mục đích học tập.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>✨ Công thức "4C" cho một Prompt Học tập hiệu quả</h4>
+                            <ul>
+                                <li><strong>1. Context (Bối cảnh/Vai trò):</strong> Định vị AI là ai và đối tượng mục tiêu là ai. Ví dụ: Chuyển từ "Giải thích X" sang "Đóng vai giáo sư, giải thích X cho học sinh cấp 2".</li>
+                                <li><strong>2. Clear Task (Nhiệm vụ rõ ràng):</strong> Sử dụng động từ hành động mạnh (Tóm tắt, Phân tích, So sánh) thay vì "Hãy nói về...".</li>
+                                <li><strong>3. Constraints (Ràng buộc):</strong> Đặt ranh giới về định dạng, độ dài, hoặc những gì KHÔNG được làm. Ví dụ: "Trả lời dưới 200 chữ, dùng markdown bảng, không dùng thuật ngữ chuyên ngành."</li>
+                                <li><strong>4. Clues (Gợi ý/Ví dụ - Few-shot):</strong> Cung cấp dữ liệu mẫu để AI "học lỏm" style của bạn ngay lập tức.</li>
+                            </ul>
+                        </div>
+
                         <div class="project-section">
                             <h4>💡 Bài học rút ra</h4>
-                            <p>Sử dụng mô hình lập luận Chain-of-Thought ("phân tích trước, trả lời sau") giúp giảm thiểu tối đa hiện tượng ảo giác (hallucination) của mô hình ngôn ngữ lớn.</p>
+                            <p>Sử dụng mô hình lập luận Chain-of-Thought ("phân tích trước, trả lời sau") giúp giảm thiểu tối đa hiện tượng ảo giác (hallucination) của mô hình ngôn ngữ lớn. Công thức 4C (Context, Clear Task, Constraints, Clues) trở thành kim chỉ nam cho mọi tương tác AI trong học tập về sau.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan3.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan3.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
@@ -1512,6 +1702,11 @@
                         <!-- Trello & Docs Collaboration Live Widget Mockup -->
                         <div class="project-section">
                             <h4>📋 Bảng Kanban Trello & Giao tiếp Google Docs nhóm</h4>
+                            <p>Hình ảnh minh chứng thực tế về bảng Kanban Trello (quản lý tiến độ) và lịch sử nhận xét Google Docs (giao tiếp bất đồng bộ) trong dự án nhóm "Trí tuệ nhân tạo và các ứng dụng thực tiễn":</p>
+                            <img src="./extracted_images/tuan4/tuan4_anh1.png" alt="Bảng Kanban Trello - Quản lý tiến độ dự án nhóm" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan4/tuan4_anh2.png" alt="Lịch sử nhận xét Google Docs - Giao tiếp nhóm" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan4/tuan4_anh3.png" alt="Minh chứng hợp tác trực tuyến tuần 4" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+
                             <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden text-xs font-mono text-slate-300 shadow-xl max-w-2xl mx-auto p-4 space-y-4">
                                 <div class="grid grid-cols-3 gap-2">
                                     <div class="bg-black/30 p-2.5 border border-white/5 rounded-lg space-y-2">
@@ -1547,6 +1742,25 @@
                         </div>
 
                         <div class="project-section">
+                            <h4>🎯 Mục tiêu và Lựa chọn Công cụ Cá nhân</h4>
+                            <p>Trong bối cảnh làm việc nhóm hiện đại, việc sử dụng thành thạo các công cụ cộng tác trực tuyến là yếu tố then chốt để đảm bảo tiến độ và chất lượng dự án. Đối với dự án "Trí tuệ nhân tạo và các ứng dụng thực tiễn", tôi đã chủ động thiết lập và vận hành bộ 3 công cụ thuộc các nhóm chức năng khác nhau nhằm tối ưu hóa hiệu suất cá nhân:</p>
+                            <ul>
+                                <li><strong>Nhóm Soạn thảo - Google Docs:</strong> Được sử dụng làm kho tài nguyên tập trung và không gian cộng tác nội dung thời gian thực.</li>
+                                <li><strong>Nhóm Giao tiếp - Messenger/Google Meets:</strong> Thảo luận nhanh, phân luồng theo chuyên mục qua Messenger và thực hiện các buổi họp trực tuyến qua Google Meets.</li>
+                                <li><strong>Nhóm Lưu trữ - Terabox/Canvas:</strong> Sử dụng Terabox để truyền tải/lưu trữ tài liệu, và Canvas để theo dõi, lưu trữ tiến trình làm.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📊 Quản lý Tài nguyên và Tương tác Hỗ trợ Nhóm</h4>
+                            <ul>
+                                <li><strong>Quản lý tiến độ công việc cá nhân:</strong> Toàn bộ nhiệm vụ được giao đều được cụ thể hóa trên Google Docs với mô tả chi tiết. Duy trì việc cập nhật trạng thái nhiệm vụ ít nhất 3-4 lần mỗi tuần để nhóm luôn nắm bắt được khối lượng công việc đã hoàn thành. Khối lượng công việc, phân chia ra sao đều được thêm vào từng thẻ.</li>
+                                <li><strong>Chủ động thảo luận:</strong> Chủ động đưa ra ý kiến thảo luận, bàn luận trong nhóm chat, để cả team có thể trao đổi với nhau.</li>
+                                <li><strong>Đóng góp nội dung chuyên sâu:</strong> Sử dụng chế độ "Đề xuất" (Suggesting) và "Nhận xét" (Comment) trên Google Docs/Canvas để góp ý cho phần việc của các thành viên khác mà không ảnh hưởng đến nội dung gốc.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
                             <h4>📋 Phân tích Thách thức và Giải pháp</h4>
                             <table>
                                 <thead>
@@ -1579,7 +1793,12 @@
                             <h4>💡 Bài học rút ra</h4>
                             <p>Sự thành công của một dự án nhóm số không chỉ phụ thuộc vào công nghệ, mà là việc xây dựng văn hóa giao tiếp bất đồng bộ minh bạch, khoa học.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan4.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan4.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
@@ -1608,56 +1827,70 @@
                             <p>Kết hợp sức mạnh sáng tạo từ 3 công cụ GenAI (Gemini, DALL-E 3, Canva AI) để thiết kế Infographic CRISP-DM chuẩn hóa ứng dụng trong phát hiện gian lận lưới điện Smart Grid.</p>
                         </div>
 
-                        <!-- CRISP-DM & Smart Grid SVG Vector Diagram Widget -->
+                        <!-- CRISP-DM & Smart Grid Image Insertions -->
                         <div class="project-section">
-                            <h4>⚡ Quy trình CRISP-DM & Mô phỏng lưới điện thông minh</h4>
-                            <div class="bg-[#0b0b12] border border-white/10 rounded-xl overflow-hidden shadow-xl max-w-2xl mx-auto p-4 space-y-4">
-                                <svg viewBox="0 0 600 240" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="grid-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#8b5cf6" />
-                                            <stop offset="100%" stop-color="#06b6d4" />
-                                        </linearGradient>
-                                    </defs>
-                                    <!-- Central Database Hub -->
-                                    <rect x="250" y="80" width="100" height="80" rx="10" fill="#121225" stroke="url(#grid-glow)" stroke-width="2" />
-                                    <text x="300" y="115" fill="#ffffff" font-size="12" font-family="monospace" text-anchor="middle" font-weight="bold">PostgreSQL</text>
-                                    <text x="300" y="135" fill="#06b6d4" font-size="9" font-family="monospace" text-anchor="middle">Data Central Hub</text>
+                            <h4>⚡ Quy trình CRISP-DM & Mô phỏng lưới điện thông minh (Smart Grid)</h4>
+                            <p>Hình ảnh vector Smart Grid (minh họa cho Prompt DALL-E 3) và Infographic CRISP-DM (thiết kế bằng Canva AI):</p>
 
-                                    <!-- Connecting grid lines and pulses -->
-                                    <path d="M100,60 L250,100 M100,180 L250,140 M500,60 L350,100 M500,180 L350,140" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" stroke-dasharray="5 5" />
-                                    <circle cx="175" cy="80" r="3" fill="#8b5cf6" class="animate-pulse" />
-                                    <circle cx="425" cy="160" r="3" fill="#06b6d4" class="animate-pulse" />
+                            <p><strong>Hình 1: Vector Smart Grid — DALL-E 3 (Bước mô phỏng lưới điện thông minh)</strong></p>
+                            <img src="./extracted_images/tuan5/tuan5_anh1.png" alt="Vector Smart Grid - DALL-E 3" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
 
-                                    <!-- Peripheral Smart Meters -->
-                                    <circle cx="100" cy="60" r="22" fill="#12121e" stroke="#8b5cf6" stroke-width="1.5" />
-                                    <text x="100" y="64" fill="#f1f5f9" font-size="8" font-family="monospace" text-anchor="middle">Meter A</text>
-                                    <circle cx="100" cy="180" r="22" fill="#12121e" stroke="#8b5cf6" stroke-width="1.5" />
-                                    <text x="100" y="184" fill="#f1f5f9" font-size="8" font-family="monospace" text-anchor="middle">Meter B</text>
+                            <p><strong>Hình 2: Infographic CRISP-DM — Canva AI (Bước thiết kế bố cục)</strong></p>
+                            <img src="./extracted_images/tuan5/tuan5_anh2.png" alt="Infographic CRISP-DM - Canva AI" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
 
-                                    <!-- Algorithm detection nodes -->
-                                    <circle cx="500" cy="60" r="22" fill="#12121e" stroke="#06b6d4" stroke-width="1.5" />
-                                    <text x="500" y="64" fill="#06b6d4" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">XGBoost</text>
-                                    <circle cx="500" cy="180" r="22" fill="#12121e" stroke="#06b6d4" stroke-width="1.5" />
-                                    <text x="500" y="184" fill="#06b6d4" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">RandomForest</text>
-                                </svg>
-                                <p class="text-[10px] text-center text-slate-500 font-mono">// Hình ảnh vector lưới điện thông minh được tối ưu hóa tích hợp cùng logo PostgreSQL</p>
-                            </div>
+                            <p><strong>Hình 3 - 5: Minh chứng bổ sung quy trình sáng tạo</strong></p>
+                            <img src="./extracted_images/tuan5/tuan5_anh3.png" alt="Minh chứng sáng tạo 1" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan5/tuan5_anh4.png" alt="Minh chứng sáng tạo 2" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
+                            <img src="./extracted_images/tuan5/tuan5_anh5.png" alt="Minh chứng sáng tạo 3" class="w-full max-w-2xl mx-auto rounded-xl border border-white/10 shadow-lg mt-3 mb-5 object-cover transition-transform hover:scale-[1.02]">
                         </div>
 
                         <div class="project-section">
-                            <h4>📋 Phân tích và Đối sánh hiệu quả công cụ AI</h4>
+                            <h4>🎯 Giới thiệu dự án và Lựa chọn Công cụ</h4>
+                            <p>Dự án "Thiết kế Infographic giáo dục với chủ đề: Quy trình CRISP-DM trong Khoa học Dữ liệu - Ứng dụng Tối ưu hóa Năng lượng Smart Grid" hướng tới việc trực quan hóa quy trình khoa học dữ liệu (Data Science workflow) bằng mô hình chuẩn CRISP-DM, lấy ví dụ thực tế về phát hiện gian lận và tối ưu hóa điện năng trong hệ thống Smart Grid. Ba công cụ AI tạo sinh được sử dụng:</p>
                             <ul>
-                                <li><strong>Google Gemini (Xử lý thông tin):</strong> Cực kỳ xuất sắc trong cấu trúc hóa khung logic 6 bước nhưng cần con người biên tập 70% thuật ngữ kỹ thuật sâu tránh tối nghĩa.</li>
-                                <li><strong>DALL-E 3 (Thiết kế hình ảnh):</strong> Đem lại thẩm mỹ cao nhưng kém chính xác về mặt topology vật lý của mạng điện, đòi hỏi con người tinh chỉnh thiết kế 60% chi tiết.</li>
-                                <li><strong>Canva AI (Sắp xếp bố cục):</strong> Gợi ý bảng màu tốt nhưng không tự động phân loại luồng người dùng (UX) cho các chu trình lặp (CRISP-DM), con người cần can thiệp tái thiết kế lại 80%.</li>
+                                <li><strong>Google Gemini:</strong> Hỗ trợ tạo nội dung văn bản, lập cấu trúc thông tin cho 6 bước của CRISP-DM.</li>
+                                <li><strong>Microsoft Copilot (DALL-E 3):</strong> Hỗ trợ tạo hình ảnh minh họa vector mang phong cách công nghệ/dữ liệu.</li>
+                                <li><strong>Canva AI (Magic Design):</strong> Hỗ trợ gợi ý bố cục Infographic và phối màu.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>🛠️ Quá trình Sáng tạo, Tích hợp và Đóng góp Cá nhân (Nhật ký AI)</h4>
+                            <ul>
+                                <li><strong>Giai đoạn 1 — Xây dựng nội dung (Google Gemini):</strong> Prompt: "Đóng vai một Data Scientist. Hãy lập dàn ý ngắn gọn cho một Infographic trình bày 6 bước của quy trình CRISP-DM. Áp dụng ví dụ thực tế: Dùng dữ liệu để phát hiện hành vi ăn cắp điện trong hệ thống Smart Grid." AI liệt kê đủ 6 bước (Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment) với ví dụ khá tốt, nhưng thuật ngữ dịch ra tiếng Việt khá tối nghĩa. <strong>Tỷ lệ đóng góp: AI cung cấp khung logic (30%), bản thân biên tập thuật ngữ chuyên ngành và đưa kiến thức kỹ thuật thực tế vào (70%)</strong> — bổ sung công cụ Python (Pandas), SQL, thuật toán Random Forest/Anomaly Detection.</li>
+                                <li><strong>Giai đoạn 2 — Tạo hình ảnh minh họa (DALL-E 3):</strong> Prompt: "A highly detailed isometric vector illustration of a modern smart city powered by a smart grid. Show glowing data lines connecting houses to a central data hub. Tech aesthetic, dark blue and glowing cyan colors, no text, clean flat design suitable for an infographic." DALL-E 3 xuất ra 4 phương án. Một số "node" dữ liệu bị vẽ đứt gãy hoặc nối sai logic vật lý. <strong>Tỷ lệ: AI tạo base hình ảnh (40%), tôi tinh chỉnh chi tiết kỹ thuật và cắt ghép bố cục (60%)</strong> — thêm logo PostgreSQL, icon Data Pipeline.</li>
+                                <li><strong>Giai đoạn 3 — Thiết kế và Hoàn thiện (Canva AI):</strong> Tải ảnh từ giai đoạn 2 lên Canva, dùng Magic Design với prompt: "Technology infographic layout with 6 circular steps, dark mode, neon blue accents". Layout của AI chia khung tỷ lệ không đều cho 6 bước CRISP-DM, khiến chu trình (cycle) bị phá vỡ. <strong>Tỷ lệ: Gợi ý phối màu của AI (20%), kỹ năng thiết kế và sắp xếp logic thông tin của cá nhân (80%)</strong> — tự thiết kế lại vòng lặp tuần hoàn bằng các mũi tên, dùng font Mono, phân cấp thông tin bằng màu sắc (cam cho cảnh báo gian lận, xanh cho luồng dữ liệu chuẩn).</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📊 Phân tích và Đối sánh hiệu quả công cụ AI</h4>
+                            <ul>
+                                <li><strong>Google Gemini (Xử lý Ngôn ngữ Tự nhiên):</strong> Điểm mạnh: Hiểu rất rõ các framework chuẩn mực, giúp tiết kiệm 70% thời gian nghiên cứu ban đầu. Điểm yếu: Dễ mắc lỗi "ảo giác" (hallucination) ở các chi tiết kỹ thuật sâu khi yêu cầu code hoặc SQL phức tạp. Người dùng buộc phải có nền tảng tư duy máy tính (Computational Thinking) vững chắc để review.</li>
+                                <li><strong>DALL-E 3 (Trực quan hóa hình ảnh):</strong> Điểm mạnh: Chuyển đổi các khái niệm trừu tượng thành hình ảnh vector isometric có tính thẩm mỹ cao, đồng bộ về màu sắc. Điểm yếu: Rất tệ trong việc vẽ sơ đồ mạng lưới chính xác — AI không hiểu bản chất topology của mạng máy tính, dẫn đến vẽ các node mạng nối lung tung. Nó chỉ vẽ bề ngoài "trông có vẻ công nghệ" chứ không đáp ứng tính chính xác học thuật.</li>
+                                <li><strong>Canva AI (Hỗ trợ trình bày):</strong> Điểm mạnh: Cực kỳ hiệu quả trong thiết lập hệ thống màu sắc (Color Palette) đồng nhất dựa trên ảnh tải lên. Điểm yếu: Khả năng phân loại và sắp xếp thông tin theo luồng (Information Flow) rất kém. Với quy trình 6 bước tuần hoàn như CRISP-DM, Canva AI không tự hiểu để gợi ý bố cục vòng tròn mà thường xếp dọc nhàm chán.</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>⚖️ Phân tích Vai trò của AI và các Vấn đề Đạo đức</h4>
+                            <p>Đầu ra của AI chỉ chiếm dưới 40% khối lượng công việc, chủ yếu đóng vai trò "Scaffolding" (Tạo giàn giáo). Sự kết hợp sáng tạo của cá nhân chiếm hơn 60%, nằm ở khả năng kiểm định tính chính xác chuyên môn, biên tập thuật ngữ và thiết kế luồng người dùng (UX). AI giúp thoát khỏi các công việc tay chân lặp đi lặp lại để tập trung vào tư duy hệ thống.</p>
+                            <ul>
+                                <li><strong>Tính toàn vẹn và Minh bạch dữ liệu (Data Integrity):</strong> Trong Khoa học Dữ liệu, việc trình bày sai số liệu là cấm kỵ. Phụ thuộc hoàn toàn vào văn bản sinh ra bởi AI có rủi ro tạo ra "Báo cáo giả mạo" (Fake Insights). Trách nhiệm đạo đức là phải "Fact-check" mọi thông số AI đưa ra.</li>
+                                <li><strong>Bản quyền tài nguyên đồ họa:</strong> Dùng AI để sinh ảnh thương mại hóa vẫn là vùng xám pháp lý. Nguyên tắc: Khai báo minh bạch nguồn gốc hình ảnh (Generated by DALL-E 3) trực tiếp trên Infographic.</li>
+                                <li><strong>Sự thiên vị thuật toán (Algorithmic Bias):</strong> Hình ảnh AI sinh ra thường mang tính rập khuôn về một nhóm đối tượng nhất định. Cần chủ động điều chỉnh prompt để các minh họa đa dạng và công bằng hơn.</li>
                             </ul>
                         </div>
                         <div class="project-section">
                             <h4>💡 Bài học rút ra</h4>
-                            <p>Trí tuệ nhân tạo đóng vai trò làm khung sườn hỗ trợ ban đầu (Scaffolding). Năng lực chuyên môn của nhà phân tích mới là yếu tố quyết định giá trị khoa học cuối cùng.</p>
+                            <p>Trí tuệ nhân tạo đóng vai trò làm khung sườn hỗ trợ ban đầu (Scaffolding). Năng lực chuyên môn của nhà phân tích mới là yếu tố quyết định giá trị khoa học cuối cùng. Sản phẩm cuối cùng minh chứng rõ ràng: đầu ra của AI chiếm dưới 40%, sáng tạo cá nhân chiếm trên 60%.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan5.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan5.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
@@ -1718,13 +1951,64 @@
 
                         <div class="project-section">
                             <h4>📜 Phân tích Chính sách học thuật Đại học RMIT Việt Nam</h4>
-                            <p>RMIT Việt Nam dẫn đầu trong việc cho phép sử dụng AI có kiểm soát, yêu cầu minh bạch trích dẫn và quy kết trách nhiệm chính xác cho sinh viên. Đây là chính sách vô cùng thực tế và tiến bộ vượt trội so với lệnh cấm tiêu cực cực đoan.</p>
+                            <p><strong>1. Tóm tắt chính sách:</strong> RMIT cho phép sinh viên sử dụng các công cụ AI tạo sinh (ChatGPT, Gemini) như một công cụ hỗ trợ học tập, ngoại trừ các bài kiểm tra có quy định cấm cụ thể. Tuy nhiên, sinh viên phải tự chịu trách nhiệm về tính chính xác của thông tin, không được sao chép nguyên văn đầu ra của AI làm bài nộp (đây bị coi là đạo văn), và bắt buộc phải trích dẫn, ghi nhận sự hỗ trợ của AI một cách minh bạch trong bài làm.</p>
+                            <p><strong>2. So sánh và Phân tích:</strong> So với một số trường đại học truyền thống vẫn áp dụng lệnh cấm hoàn toàn AI trong mọi hình thức đánh giá, chính sách của RMIT thể hiện sự cởi mở và linh hoạt hơn. Thay vì cấm đoán một cách tiêu cực và khó kiểm soát, trường hướng tới việc giáo dục sinh viên cách sử dụng công cụ "đúng chuẩn".</p>
+                            <p><strong>3. Nhận định cá nhân:</strong> Đây là hướng tiếp cận tiến bộ và sát với thực tế công việc tương lai. Việc quản lý bằng đạo đức học thuật và yêu cầu minh bạch trích dẫn giúp sinh viên phát triển ý thức tự giác, đồng thời tận dụng được sức mạnh công nghệ để nâng cao năng suất mà không đánh mất tư duy độc lập.</p>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>📋 Thực hiện Nhiệm vụ Học tập với AI — Bài tiểu luận "Tác động của thời trang nhanh đến môi trường nước"</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Bước</th>
+                                        <th>Prompt đầu vào</th>
+                                        <th>Đầu ra của AI (Tóm tắt)</th>
+                                        <th>Đánh giá, chỉnh sửa và tích hợp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>"Hãy đóng vai một chuyên gia môi trường, lập dàn ý 3 phần cho bài luận 'Tác động của thời trang nhanh đến môi trường nước'."</td>
+                                        <td>Dàn ý 3 phần cơ bản: Mở bài (Định nghĩa), Thân bài (Tiêu thụ nước, ô nhiễm vi nhựa, hóa chất nhuộm), Kết bài (Giải pháp).</td>
+                                        <td>Logic nhưng khá chung chung. Yêu cầu AI thu hẹp phạm vi giải pháp tập trung vào người tiêu dùng trẻ. Tự bổ sung thêm phần "Thực trạng tại các quốc gia đang phát triển" vào Thân bài.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>"Cung cấp 3 số liệu thống kê đáng tin cậy về lượng nước được sử dụng để sản xuất một chiếc áo thun cotton."</td>
+                                        <td>Cần khoảng 2.700 lít nước để sản xuất một chiếc áo thun cotton (đủ cho một người uống trong 2,5 năm).</td>
+                                        <td>Số liệu ấn tượng nhưng cần kiểm chứng. Tìm kiếm trên Google và xác nhận đây là số liệu từ WWF. Đưa vào bài và trích dẫn nguồn WWF thay vì trích dẫn AI.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>"Hãy viết một đoạn mở bài thu hút sự chú ý dựa trên số liệu 2.700 lít nước ở trên."</td>
+                                        <td>Đoạn văn dài 150 chữ, sử dụng nhiều tính từ mạnh và câu cảm thán.</td>
+                                        <td>Giọng văn quá cường điệu, không phù hợp với văn phong học thuật. Giữ lại ý tưởng so sánh lượng nước, nhưng tự viết lại toàn bộ đoạn văn bằng ngôn ngữ khách quan, mạch lạc hơn.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="mt-2 text-xs italic text-slate-400"><strong>Trích dẫn sử dụng AI trong bài luận:</strong> "Trong bài luận này, tôi đã sử dụng mô hình Gemini (phiên bản Pro) vào ngày 17/05/2026 để hỗ trợ lên ý tưởng dàn bài ban đầu và tìm kiếm từ khóa liên quan đến ô nhiễm vi nhựa. Toàn bộ nội dung văn bản cuối cùng và việc xác minh số liệu đều do tôi tự thực hiện."</p>
+                        </div>
+
+                        <div class="project-section">
+                            <h4>⚖️ Phân tích các Vấn đề Đạo đức Liên quan</h4>
+                            <ul>
+                                <li><strong>1. Ranh giới giữa hỗ trợ hợp lý và gian lận học thuật:</strong> Ranh giới này nằm ở "quyền tác giả" (authorship) và "tư duy phản biện". Sử dụng AI để gợi ý cấu trúc bài, giải thích khái niệm khó hiểu, hoặc dịch thuật tài liệu là hỗ trợ hợp lý. Gian lận học thuật xảy ra khi sinh viên giao khoán việc tạo ra sản phẩm trí tuệ (viết code, viết văn, giải toán) cho AI và nộp dưới tên mình — lúc này, sinh viên đã lừa dối hệ thống đánh giá năng lực của nhà trường.</li>
+                                <li><strong>2. Vấn đề quyền sở hữu trí tuệ và trích dẫn:</strong> Các mô hình AI được đào tạo trên hàng tỷ văn bản, hình ảnh có bản quyền của con người nhưng khi xuất ra kết quả lại hiếm khi ghi nguồn. Nếu sinh viên bê nguyên thông tin từ AI vào bài làm, họ đang vô tình tiếp tay cho vi phạm bản quyền. Đạo đức học thuật đòi hỏi người học phải truy xuất ngược lại nguồn gốc thông tin do AI cung cấp để trích dẫn tác giả gốc.</li>
+                                <li><strong>3. Tác động đến quá trình học tập và phát triển kỹ năng:</strong> Lạm dụng AI có thể tạo ra "ảo tưởng về năng lực" (illusion of competence). Sinh viên có điểm số cao nhờ AI nhưng thực chất không sở hữu kỹ năng nghiên cứu, tư duy logic và kỹ năng viết độc lập. Về lâu dài, sự phụ thuộc này làm thui chột khả năng giải quyết vấn đề - kỹ năng cốt lõi nhất mà giáo dục đại học cần trang bị trước khi bước vào thị trường lao động.</li>
+                            </ul>
                         </div>
                         <div class="project-section">
                             <h4>💡 Bài học rút ra</h4>
-                            <p>Sự liêm chính học thuật không chỉ là việc tuân thủ luật lệ của nhà trường mà là bảo vệ chính quá trình tiến hóa tư duy độc lập và giải quyết vấn đề của sinh viên trước khi bước vào thị trường lao động lớn.</p>
+                            <p>Sự liêm chính học thuật không chỉ là việc tuân thủ luật lệ của nhà trường mà là bảo vệ chính quá trình tiến hóa tư duy độc lập và giải quyết vấn đề của sinh viên trước khi bước vào thị trường lao động lớn. 6 nguyên tắc cá nhân được xây dựng dựa trên những phân tích này sẽ là kim chỉ nam cho mọi tương tác AI trong tương lai.</p>
                         </div>
-                    </div>
+
+                        <a href="./docx_files/tuan6.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan6.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
@@ -1760,61 +2044,103 @@
                             </ul>
                         </div>
                         <div class="project-section">
-                            <h4>📊 Bảng Tổng hợp và So sánh 6 Tài liệu Nghiên cứu xuất sắc</h4>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Tên bài báo & Tác giả</th>
-                                        <th>Đối tượng khảo sát</th>
-                                        <th>Kết quả đạt được</th>
-                                        <th>Ưu điểm & Hạn chế</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="font-bold text-white">Brown et al. (2021)</td>
-                                        <td>Anode Composite (Graphene/Silicon)</td>
-                                        <td>Dung lượng tăng 150%, giữ 85% hiệu suất sau 500 chu kỳ.</td>
-                                        <td><span class="text-emerald-400">✔</span> Co giãn tốt hạn chế giãn nở Silicon. <span class="text-red-400">✘</span> Chi phí cao.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold text-white">Kim & Park (2022)</td>
-                                        <td>Cấu trúc Nano Graphene tấm phẳng</td>
-                                        <td>Rút ngắn thời gian sạc đầy chỉ còn 12 phút.</td>
-                                        <td><span class="text-emerald-400">✔</span> Tăng tốc độ khuếch tán ion. <span class="text-red-400">✘</span> Hiệu suất Coulomb vòng đầu thấp.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold text-white">Li et al. (2023)</td>
-                                        <td>Khung mạng lưới Graphene 3D</td>
-                                        <td>Đạt mật độ năng lượng cực đại 350 Wh/kg.</td>
-                                        <td><span class="text-emerald-400">✔</span> Diện tích tiếp xúc bề mặt khổng lồ. <span class="text-red-400">✘</span> Quy trình chế tạo phức tạp.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold text-white">Smith & Davis (2023)</td>
-                                        <td>Pin Li-ion bọc màng Graphene</td>
-                                        <td>Tăng giới hạn chịu nhiệt của pin thêm 25°C.</td>
-                                        <td><span class="text-emerald-400">✔</span> Dẫn nhiệt nhanh tản nhiệt bảo vệ pin. <span class="text-red-400">✘</span> Tăng nhẹ khối lượng cell.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold text-white">Wang et al. (2024)</td>
-                                        <td>Cathode Composite (LiFePO4/Graphene)</td>
-                                        <td>Tuổi thọ vượt 3000 chu kỳ sạc (gấp 1.5 lần thông thường).</td>
-                                        <td><span class="text-emerald-400">✔</span> Ngăn ngừa phản ứng phụ với chất điện phân. <span class="text-red-400">✘</span> Lớp phủ quá dày cản trở Li+.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold text-white">Zhao et al. (2025)</td>
-                                        <td>Hệ thống sản xuất pin công nghiệp</td>
-                                        <td>Lập lộ trình kinh tế tối ưu vật liệu bột Graphene.</td>
-                                        <td><span class="text-emerald-400">✔</span> Tối ưu hóa chi phí sản xuất. <span class="text-red-400">✘</span> Chưa đạt hiệu suất hoàn hảo như Lab.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <h4>🛠️ Giới thiệu Công cụ AI: Elicit & Consensus</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-brand-cyan font-bold">Elicit.org</p>
+                                    <p class="text-[10px] text-slate-400">Công cụ tìm kiếm nghiên cứu khoa học sử dụng mô hình ngôn ngữ lớn (LLM) để tự động trích xuất dữ liệu từ hàng triệu bài báo trên PubMed, Semantic Scholar. Hỗ trợ lập bảng tổng hợp, tóm tắt và phân loại tài liệu theo câu hỏi nghiên cứu.</p>
+                                </div>
+                                <div class="p-3 bg-black/40 border border-white/5 rounded-lg space-y-1">
+                                    <p class="text-brand-purple font-bold">Consensus.app</p>
+                                    <p class="text-[10px] text-slate-400">Công cụ tìm kiếm cung cấp "mức độ đồng thuận khoa học" (consensus) dựa trên phân tích hàng trăm nghìn tài liệu, giúp xác định câu trả lời có tính nhất trí cao trong cộng đồng nghiên cứu.</p>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="project-section">
-                            <h4>💡 Nhận xét tổng quan học thuật</h4>
-                            <p>Khoảng trống lớn nhất trong nghiên cứu Graphene hiện tại không nằm ở hiệu năng phòng thí nghiệm mà nằm ở bài toán sản xuất quy mô công nghiệp (Scale-up) từ quy mô gam sang hàng tấn mà vẫn giữ được cấu trúc nano tinh khiết.</p>
+                            <h4>📊 Bảng Tổng hợp và So sánh 6 Tài liệu Nghiên cứu xuất sắc</h4>
+                            <p class="text-xs italic text-slate-400 mb-3">Dưới đây là thông tin trích xuất chi tiết từ 6 bài báo khoa học chuẩn quốc tế (vượt tiêu chí tối thiểu 5 bài) được tìm kiếm qua Elicit và Consensus.</p>
+                            <div class="overflow-x-auto">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên bài báo & Tác giả</th>
+                                            <th>Phương pháp nghiên cứu</th>
+                                            <th>Kết quả chính</th>
+                                            <th>Đối tượng / Vật liệu</th>
+                                            <th>Thông tin cốt lõi trích xuất (Ưu điểm & Hạn chế)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">1</td>
+                                            <td class="font-bold text-white">Graphene-based anodes for lithium-ion batteries<br/>(Brown et al., 2021)</td>
+                                            <td>Thực nghiệm: Tổng hợp vật liệu composite Graphene-Silicon bằng phương pháp sấy phun.</td>
+                                            <td>Tăng dung lượng pin lên 150% so với anode than chì truyền thống; duy trì 85% hiệu suất sau 500 chu kỳ sạc.</td>
+                                            <td>Anode vật liệu Composite (Graphene/Silicon).</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Hạn chế sự giãn nở thể tích của Silicon nhờ độ co giãn của Graphene.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Chi phí chế tạo ban đầu cao.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">2</td>
+                                            <td class="font-bold text-white">Fast-charging lithium-ion batteries using graphene<br/>(Kim & Park, 2022)</td>
+                                            <td>Mô phỏng số (DFT) kết hợp thực nghiệm kiểm chứng tốc độ di chuyển ion Li+.</td>
+                                            <td>Giảm thời gian sạc đầy xuống còn 12 phút mà không gây hiện tượng quá nhiệt hay đoản mạch.</td>
+                                            <td>Cực điện cấu trúc Nano Graphene tấm phẳng.</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Tăng tính dẫn điện và tốc độ khuếch tán ion.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Hiệu suất Coulomb vòng đầu tiên thấp (<70%).</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">3</td>
+                                            <td class="font-bold text-white">3D Graphene networks for high-energy batteries<br/>(Li et al., 2023)</td>
+                                            <td>Thực nghiệm: Thiết kế mạng lưới Graphene 3D xốp làm khung đỡ cho các hạt oxit kim loại.</td>
+                                            <td>Đạt mật độ năng lượng vượt trội (350 Wh/kg), cấu trúc bền vững không bị sụp đổ khi sạc nhanh.</td>
+                                            <td>Khung Graphene 3D (Three-dimensional graphene network).</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Diện tích tiếp xúc bề mặt cực lớn, tối ưu hóa dòng electron.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Quy trình sản xuất phức tạp, khó kiểm soát độ đồng đều.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">4</td>
+                                            <td class="font-bold text-white">Thermal stability of graphene-enhanced batteries<br/>(Smith & Davis, 2023)</td>
+                                            <td>Phân tích nhiệt lượng quét vi sai (DSC) để đo độ bền nhiệt của pin khi đoản mạch.</td>
+                                            <td>Tăng giới hạn chịu nhiệt của pin thêm 25°C, giảm thiểu tối đa nguy cơ cháy nổ do hiện tượng quá nhiệt (thermal runaway).</td>
+                                            <td>Pin Lithium-ion thương mại bọc màng Graphene.</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Độ dẫn nhiệt của Graphene giúp tản nhiệt cực nhanh.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Làm tăng nhẹ tổng khối lượng của cell pin.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">5</td>
+                                            <td class="font-bold text-white">Long-cycle life of Graphene/LiFePO4 cathodes<br/>(Wang et al., 2024)</td>
+                                            <td>Thực nghiệm: Phủ một lớp Graphene mỏng lên vật liệu cathode LiFePO4.</td>
+                                            <td>Tuổi thọ pin đạt hơn 3000 chu kỳ sạc-xả (gấp 1.5 lần thông thường), độ suy hao dung lượng duy trì ở mức tối thiểu.</td>
+                                            <td>Cathode vật liệu Composite (LiFePO4/Graphene).</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Bảo vệ bề mặt điện cực khỏi các phản ứng phụ với chất điện phân.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Lớp phủ quá dày có thể cản trở ion Li+.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-bold text-white text-center">6</td>
+                                            <td class="font-bold text-white">Challenges in scaling up graphene battery production<br/>(Zhao et al., 2025)</td>
+                                            <td>Nghiên cứu tổng quan và đánh giá kinh tế - kỹ thuật (TEA) trên dây chuyền công nghiệp.</td>
+                                            <td>Xác định chi phí sản xuất lớp Graphene chất lượng cao dạng màng là rào cản lớn nhất, cần chuyển dịch sang dạng bột pha chế.</td>
+                                            <td>Quy trình sản xuất pin Graphene quy mô công nghiệp.</td>
+                                            <td><span class="text-emerald-400 font-bold">Ưu:</span> Đưa ra lộ trình tối ưu chi phí nguyên liệu.<br/><span class="text-red-400 font-bold">Hạn chế:</span> Chưa tối ưu hóa được hoàn toàn hiệu suất điện hóa như phòng thí nghiệm.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="project-section">
+                            <h4>💡 Nhận xét tổng hợp và Đánh giá sâu sắc</h4>
+                            <p class="mb-2">Qua quá trình tổng hợp và phân tích 6 tài liệu nghiên cứu chất lượng cao bằng công cụ AI, tôi rút ra các nhận xét tổng hợp mang tính chuyên môn sau:</p>
+                            <ul>
+                                <li><strong>1. Xu hướng và sự đồng thuận trong nghiên cứu:</strong> Các nghiên cứu đều đồng thuận khẳng định Graphene là "vật liệu tương lai" cho công nghệ lưu trữ năng lượng nhờ các đặc tính cơ-lý-hóa xuất sắc. Khả năng dẫn điện vượt trội và diện tích bề mặt lớn của cấu trúc nano này giải quyết trực tiếp hai điểm nghẽn lớn nhất của pin Lithium-ion truyền thống: tốc độ sạc chậm và sự suy giảm dung lượng nhanh do hỏng cấu trúc điện cực.</li>
+                                <li><strong>2. Đánh giá về mặt giải pháp kỹ thuật:</strong> Việc kết hợp Graphene dạng mạng lưới 3D (Li et al., 2023) hoặc kết hợp với Silicon (Brown et al., 2021) đang là hướng đi mang lại hiệu quả đột phá nhất về mặt dung lượng. Graphene đóng vai trò như một lớp "đệm" đàn hồi lý tưởng, vừa chịu đựng được sự co giãn thể tích cực đại của các hạt Silicon, vừa tạo đường truyền dẫn điện siêu tốc cho các electron.</li>
+                                <li><strong>3. Khoảng trống nghiên cứu và thách thức thực tế (Insight sâu sắc):</strong> Mặc dù các kết quả trong phòng thí nghiệm vô cùng ấn tượng (sạc 12 phút, tuổi thọ 3000 chu kỳ), khoảng trống lớn nhất hiện nay chính là bài toán kinh tế và quy mô công nghiệp. Việc chuyển đổi từ chế tạo Graphene chất lượng cao ở quy mô vài gam sang quy mô hàng tấn mà vẫn giữ nguyên cấu trúc nano không tỳ vết là cực kỳ thách thức (Zhao et al., 2025). Do đó, xu hướng nghiên cứu trong 1-2 năm tới cần tập trung mạnh mẽ vào việc đơn giản hóa quy trình tổng hợp hóa học xanh và hạ giá thành vật liệu để sớm đưa pin Graphene ra thị trường thương mại.</li>
+                            </ul>
+                        </div>
+
+                        <a href="./docx_files/tuan7.docx" download
+                           class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-sm hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-300 hover:text-white transition-all shadow-lg">
+                            📄 Tải file Word gốc (tuan7.docx)
+                        </a>
+                    </div></div>
                 </div>
             </div>
 
